@@ -1,0 +1,9 @@
+{
+  "name": "kaufee",
+  "version": "0.1.0",
+  "description": "coffee ordering app",
+  "main": "index.js",
+  "repository": "git@github.com:Kauri-2018/kaufee.git",
+  "author": "EDA",
+  "license": "MIT"
+}
