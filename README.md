@@ -4,6 +4,7 @@
 
 * Home (/)
 * Login (/login)
+* Register (/register)
 * Profile (/profile)
 * History (/history)
 * Order details (/orders/:id)
@@ -24,19 +25,20 @@
 
 ## DB Tables
 
-* users
+* creds
   - id (pk)
   - username
   - hash
-* profiles
+* users
   - id (pk)
-  - user_id (fk)
+  - cred_id (fk)
   - name
-  - cuppa
+  - order_text
 * orders
   - id (pk)
   - date
   - is_complete
+  - owner_id
 * order_items
   - id (pk)
   - user_id (fk)
