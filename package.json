@@ -11,7 +11,7 @@
     "test": "jest --watchAll",
     "start": "node server",
     "postinstall": "webpack --config ./client/webpack.config.js"
-  }, 
+  },
   "babel": {
     "presets": [
       "env",
@@ -32,6 +32,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-redux-form": "^1.16.8",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "superagent": "^3.8.2",
