@@ -6,13 +6,18 @@
   "repository": "git@github.com:Kauri-2018/kaufee.git",
   "author": "EDA",
   "license": "MIT",
-<<<<<<< HEAD
   "scripts": {
-    "dev": "nodemon --watch server & webpack --watch",
+    "dev": "nodemon server --watch server & webpack --watch --config ./client/webpack.config.js",
     "test": "jest --watchAll",
     "start": "node server",
-    "postinstall": "webpack"
+    "postinstall": "webpack --config ./client/webpack.config.js"
   }, 
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
   "dependencies": {
     "express": "^4.16.2"
   },
@@ -31,12 +36,5 @@
     "redux-thunk": "^2.2.0",
     "superagent": "^3.8.2",
     "webpack": "^3.11.0"
-=======
-  "devDependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
->>>>>>> c9d9b47bec926baeec6a122196c521c5d9ea0a14
   }
 }
