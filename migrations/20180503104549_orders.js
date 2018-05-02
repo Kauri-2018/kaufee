@@ -3,7 +3,7 @@ exports.up = (knex, Promise) => {
     table.increments('id').primary()
     table.int('date').default(Date.now())
     table.boolean('is_complete')
-    table.int('owner.id').foreign()
+    table.int('owner_id').references()
   })
 }
 
