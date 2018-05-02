@@ -1,5 +1,5 @@
 import React from 'react'
-import {registerUser} from '../apiClient'
+//import {registerUser} from '../apiClient'
 
 class Register extends React.Component {
   constructor (props) {
@@ -20,7 +20,7 @@ class Register extends React.Component {
 
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
-      registerUser({...this.state})
+      //registerUser({...this.state})
     }
   }
 
