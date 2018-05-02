@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:Kauri-2018/kaufee.git",
   "author": "EDA",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.14.6"
+  }
 }
