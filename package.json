@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "nodemon --watch",
     "start": "node server",
-    "test": "jest"
+    "test": "jest",
+    "knex": "knex --knexfile ./server/db/knexfile.js"
   },
   "dependencies": {
     "express": "^4.16.3",
