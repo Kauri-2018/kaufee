@@ -1,12 +1,10 @@
-
 const express = require('express')
-const router = express.Router()
 
 const db = require('../db/users')
 
-router.post('/register', register)
+const router = express.Router()
 
-router.get('/', (req, res) => res.send('hi'))
+router.post('/register', register)
 
 function register (req, res) {
   db.userExists(req.body.username)
