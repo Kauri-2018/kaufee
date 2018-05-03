@@ -2,16 +2,53 @@
   "name": "kaufee",
   "version": "0.1.0",
   "description": "coffee ordering app",
-  "main": "index.js",
+  "main": "server/index.js",
   "repository": "git@github.com:Kauri-2018/kaufee.git",
   "author": "EDA",
   "license": "MIT",
   "scripts": {
-    "knex": "knex --knexfile server/db/knexfile.js"
+    "dev": "nodemon server --watch server & webpack --watch --config ./client/webpack.config.js",
+    "test": "jest --watchAll",
+    "start": "node server",
+    "postinstall": "webpack --config ./client/webpack.config.js"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
   },
   "dependencies": {
+    "express": "^4.16.2",
     "knex": "^0.14.6",
     "sodium": "^2.0.3",
     "sqlite3": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "cheerio": "^1.0.0-rc.2",
+    "jest": "^22.4.3",
+    "nock": "^9.1.6",
+    "nodemon": "^1.14.12",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-redux-form": "^1.16.8",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-mock-store": "^1.5.1",
+    "redux-thunk": "^2.2.0",
+    "superagent": "^3.8.2",
+    "supertest": "^3.0.0",
+    "webpack": "^3.11.0"
   }
 }
