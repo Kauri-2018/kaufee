@@ -19,7 +19,9 @@
     ]
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "knex": "^0.14.6",
+    "sqlite3": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

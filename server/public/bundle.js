@@ -26862,12 +26862,12 @@ var Home = function (_React$Component) {
   }
 
   _createClass(Home, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.dispatch((0, _actions.showOrders)());
+    }
+  }, {
     key: 'render',
-
-    // componentDidMount () {
-    //   this.props.dispatch(showOrders())
-    // }
-
     value: function render() {
       return _react2.default.createElement(
         'div',
