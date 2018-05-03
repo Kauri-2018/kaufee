@@ -13,9 +13,23 @@ exports.seed = (knex, Promise) => {
         },
         {
           id: 2,
+          user_id: 2,
+          order_id: 1,
+          order_text: 'latte',
+          user_name: 'test person 2'
+        },
+        {
+          id: 3,
           user_id: 1,
           order_id: 2,
-          order_text: 'latte',
+          order_text: 'medium flat white',
+          user_name: 'test person 1'
+        },
+        {
+          id: 4,
+          user_id: 2,
+          order_id: 2,
+          order_text: 'medium latte',
           user_name: 'test person 2'
         }
       ])

@@ -1,24 +1,25 @@
-
 const express = require('express')
-const router = express.Router()
 
 const db = require('../db/users')
 
-router.post('/register', register)
+const router = express.Router()
 
-router.get('/', (req, res) => res.send('hi'))
+router.use(express.json())
+
+router.post('/register', register)
 
 function register (req, res) {
   db.userExists(req.body.username)
     .then(exists => {
       if(exists) {
-        return res.status(400).send({ message: 'User exists'})
+        return res.status(400).json({message: 'User exists'})
       }
-      db.createUser(req.body.username, req.body.name, req.body.password)
-        .then(() => res.status(201).end())
+      const {username, name, password} = req.body
+      db.createUser(username, name, password)
+        .then(() => res.sendStatus(201))
     })
     .catch(err => {
-      res.status(500).send({ message: err.message })
+      res.status(500).json({message: err.message})
     })
 }
 
