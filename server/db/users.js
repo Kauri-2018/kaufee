@@ -1,6 +1,7 @@
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const knex = require('knex')(config)
+const { generate } = require('../auth/hash')
 
 function userExists(username, db = knex) {
   return db('creds')
@@ -13,7 +14,7 @@ function userExists(username, db = knex) {
 
 
 function createUser(username, name, password, db = knex) {
-  const hash = pwhash.generate(password)
+  const hash = addgenerate(password)
   return db('creds')
     .insert({
       username,
