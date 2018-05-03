@@ -15,10 +15,9 @@ router.get('/', (req, res) => {
       const currentOrder = {
         id: items[0].orderId,
         items: items.map(item => ({
-          orderId: item.orderId,
-          userName: item.userName,
-          orderItemId: item.orderItemId,
-          orderDetails: item.orderDetails
+          id: item.orderItemId,
+          name: item.userName,
+          order: item.orderDetails
         }))
       }
       res.json(currentOrder)

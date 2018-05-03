@@ -26,6 +26,12 @@
       "transform-object-rest-spread"
     ]
   },
+  "jest": {
+      "setupFiles": [
+        "./tests/client/configure.js",
+        "./tests/client/setup-dom.js"
+    ]
+  },
   "dependencies": {
     "express": "^4.16.2",
     "knex": "^0.14.6",
