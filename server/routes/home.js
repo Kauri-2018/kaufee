@@ -1,6 +1,7 @@
 const express = require('express')
 
 const db = require('../db/orders')
+const orderItems = require('../db/orderItems')
 
 const router = express.Router()
 
@@ -21,6 +22,18 @@ router.get('/', (req, res) => {
         }))
       }
       res.json(currentOrder)
+    })
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
+})
+
+router.post('/order-item/:orderId/:userId', (req, res) => {
+  const orderId = req.params.orderId
+  const userId = req.params.userId
+  orderItems.getOrders(orderId, userId)
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch(err => {
       res.status(500).send(err.message)
