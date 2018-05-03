@@ -9,7 +9,7 @@ module.exports = {
 }
 
 function getUser (userId, conn = connection) {
-  return conn('users') // Should this be part of the db/users module?
+  return conn('users')
     .where('id', '=', userId)
     .select(
       'id as userId',
