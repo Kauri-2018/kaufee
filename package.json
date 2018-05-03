@@ -11,7 +11,8 @@
     "start": "node server",
     "postinstall": "webpack",
     "build": "webpack --config ./client/webpack.config.js",
-    "test": "jest"
+    "test": "jest",
+    "knex": "knex --knexfile server/db/knexfile.js"
   },
   "babel": {
     "presets": [
@@ -30,6 +31,8 @@
     "babel-preset-react": "^6.24.1",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
+    "knex": "^0.14.6",
+    "sqlite3": "^4.0.0",
     "jest": "^22.4.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
