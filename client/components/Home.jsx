@@ -5,23 +5,15 @@ import Order from './Order'
 import {showOrders} from '../actions'
 
 class Home extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      orders: {}
-    }
-  }
   componentDidMount () {
     this.props.dispatch(showOrders())
-    this.setState({
-      orders: orders
-    })
   }
 
   render () {
     return (
       <div className='order-container'>
-        {this.state.orders.map(order =>
+      hello world
+        {this.props.orders.map(order =>
           <Order key={order.id}
             {...order}
           />

@@ -23772,7 +23772,7 @@ var _Home = __webpack_require__(115);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Footer = __webpack_require__(123);
+var _Footer = __webpack_require__(125);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -23785,9 +23785,7 @@ var App = function App() {
     _react2.default.createElement(
       'div',
       { className: 'app' },
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _Nav2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _Footer2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default })
     )
   );
 };
@@ -26830,6 +26828,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -26838,7 +26838,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(28);
 
-var _actions = __webpack_require__(116);
+var _Order = __webpack_require__(116);
+
+var _Order2 = _interopRequireDefault(_Order);
+
+var _actions = __webpack_require__(117);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26858,17 +26862,21 @@ var Home = function (_React$Component) {
   }
 
   _createClass(Home, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.dispatch((0, _actions.getOrders)());
-    }
-  }, {
     key: 'render',
-    value: function render(props) {
+
+    // componentDidMount () {
+    //   this.props.dispatch(showOrders())
+    // }
+
+    value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'order-container' },
-        _react2.default.createElement(Order, null)
+        'hello world',
+        this.props.orders.map(function (order) {
+          return _react2.default.createElement(_Order2.default, _extends({ key: order.id
+          }, order));
+        })
       );
     }
   }]);
@@ -26894,32 +26902,68 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps)(Home);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getOrders = undefined;
-exports.showOrders = showOrders;
 
-var _superagent = __webpack_require__(117);
+var _react = __webpack_require__(0);
 
-var _superagent2 = _interopRequireDefault(_superagent);
+var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getOrders = exports.getOrders = function getOrders() {
-  return function (dispatch) {
-    _superagent2.default.get('/api/v1/orders').then(function (res) {
-      dispatch(showOrders(res.body.orders));
-    });
+var Order = function Order(props) {
+  return _react2.default.createElement(
+    "div",
+    { className: "order" },
+    _react2.default.createElement(
+      "div",
+      null,
+      props.name
+    ),
+    _react2.default.createElement(
+      "div",
+      null,
+      props.order
+    )
+  );
+};
+
+exports.default = Order;
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.requestOrders = exports.showError = exports.SHOW_ERROR = exports.SHOW_ORDERS = undefined;
+exports.showOrders = showOrders;
+
+var _apiClient = __webpack_require__(118);
+
+var SHOW_ORDERS = exports.SHOW_ORDERS = 'SHOW_ORDERS';
+var SHOW_ERROR = exports.SHOW_ERROR = 'SHOW_ERROR';
+
+var showError = exports.showError = function showError(errorMessage) {
+  return {
+    type: SHOW_ERROR,
+    errorMessage: errorMessage
   };
 };
 
+var requestOrders = exports.requestOrders = function requestOrders() {
+  return function (dispatch) {
+    return (0, _apiClient.getOrders)().then(function (orders) {
+      dispatch(showOrders(orders));
+    });
+  };
+};
 function showOrders(orders) {
   return {
-    type: 'SHOW_ORDERS',
-    orders: orders.map(function (order, id) {
-      return {
-        id: id + 1,
-        order: order
-      };
-    })
+    type: SHOW_ORDERS,
+    orders: orders
   };
 }
 
@@ -26934,7 +26978,31 @@ function showOrders(orders) {
 // }
 
 /***/ }),
-/* 117 */
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getOrders = undefined;
+
+var _superagent = __webpack_require__(119);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getOrders = exports.getOrders = function getOrders() {
+  return _superagent2.default.get('/api/v1/orders').then(function (res) {
+    return res.body;
+  });
+};
+
+/***/ }),
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -26951,11 +27019,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(118);
-var RequestBase = __webpack_require__(119);
+var Emitter = __webpack_require__(120);
+var RequestBase = __webpack_require__(121);
 var isObject = __webpack_require__(46);
-var ResponseBase = __webpack_require__(120);
-var Agent = __webpack_require__(122);
+var ResponseBase = __webpack_require__(122);
+var Agent = __webpack_require__(124);
 
 /**
  * Noop.
@@ -27860,7 +27928,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -28029,7 +28097,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28730,7 +28798,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28740,7 +28808,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(121);
+var utils = __webpack_require__(123);
 
 /**
  * Expose `ResponseBase`.
@@ -28873,7 +28941,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28951,7 +29019,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -28977,7 +29045,7 @@ module.exports = Agent;
 
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
