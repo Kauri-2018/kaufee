@@ -1,4 +1,3 @@
-
 exports.up = (knex, Promise) => {
     return knex.schema.createTable('users', (table) => {
         table.increments('id').primary()
@@ -6,7 +5,6 @@ exports.up = (knex, Promise) => {
         table.string('name')
         table.text('order_text')
     })
-  
 }
 
 exports.down = (knex, Promise) => {
