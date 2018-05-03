@@ -6,9 +6,9 @@ import {showOrders} from '../actions'
 
 class Home extends React.Component {
   constructor (props) {
-    state(props)
+    super(props)
     this.state = {
-      orders
+      orders: ''
     }
   }
   componentDidMount () {
