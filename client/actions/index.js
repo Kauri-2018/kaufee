@@ -1,20 +1,13 @@
-import request from 'superagent'
-
-export const getOrders = () => {
-  return (dispatch) => {
-    request.get('/api/v1/orders')
-      .then(res => {
-        dispatch(showOrders(res.body.orders))
-      })
-  }
-}
+import {getOrders} from '../apiClient'
 
 export function showOrders (orders) {
+  getOrders()
   return {
     type: 'SHOW_ORDERS',
     orders: orders.map((order, id) => ({
       id: id + 1,
-      order
+      order: order.order,
+      name: order.name
     }))
   }
 }
