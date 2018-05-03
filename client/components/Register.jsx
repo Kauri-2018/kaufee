@@ -10,6 +10,7 @@ class Register extends React.Component {
       name: ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.submitNewUser = this.submitNewUser.bind(this)
   }
 
   handleChange (e) {
@@ -22,6 +23,7 @@ class Register extends React.Component {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
         .then(token => {
+          // TODO Move to separate module at later stage
           localStorage.setItem('token', token)
         })
     }
