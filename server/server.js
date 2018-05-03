@@ -10,6 +10,6 @@ server.use(express.static(path.join(__dirname, '../public')))
 server.use('api/v1/current-order', homeRoutes)
 
 server.use(express.json())
-server.use('/api/v1/', auth)  
+server.use('/api/v1/', auth)
 
 module.exports = server
