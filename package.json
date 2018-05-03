@@ -1,14 +1,16 @@
 {
-  "name": "boilerplate-local-jwt-auth",
-  "version": "0.2.0",
-  "description": "Local Passport strategy boilerplate using libsodium and JWTs",
-  "main": "server/index.js",
+  "name": "kaufee",
+  "version": "0.1.0",
+  "description": "coffee ordering app",
+  "main": "index.js",
+  "repository": "git@github.com:Kauri-2018/kaufee.git",
   "author": "EDA",
   "license": "MIT",
   "engines": {
     "node": ">=8.9.0"
   },
   "scripts": {
+    "knex": "knex --knexfile server/db/knexfile.js",    
     "dev": "nodemon --watch server",
     "start": "node server",
     "test": "jest"
@@ -16,12 +18,12 @@
   "dependencies": {
     "express": "^4.16.2",
     "knex": "^0.14.6",
+    "sqlite3": "^4.0.0",    
     "superagent": "^3.8.2"
   },
   "devDependencies": {
     "jest": "^22.3.0",
     "nodemon": "^1.15.0",
-    "sqlite3": "^4.0.0",
     "supertest": "^3.0.0"
   }
 }
