@@ -1,5 +1,5 @@
 import React from 'react'
-//import {registerUser} from '../apiClient'
+import {registerUser} from '../apiClient'
 
 class Register extends React.Component {
   constructor (props) {
@@ -20,17 +20,17 @@ class Register extends React.Component {
 
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
-      //registerUser({...this.state})
+      registerUser({...this.state})
     }
   }
 
   render () {
     return (
       <div className ='register'>
-        <span><input name='name' onChange={this.handleChange}/></span>
-        <span><input name='username' onChange={this.handleChange}/></span>
-        <span><input type='password' name='password' onChange={this.handleChange}/></span>
-        <button onClick={this.submitNewUser}></button>
+        <span><input name='name' placeholder='Full Name' onChange={this.handleChange}/></span>
+        <span><input name='username' placeholder='Username' onChange={this.handleChange}/></span>
+        <span><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></span>
+        <button onClick={this.submitNewUser}>Register</button>
       </div>
     )
   }
