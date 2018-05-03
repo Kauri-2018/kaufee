@@ -5,5 +5,12 @@
   "main": "index.js",
   "repository": "git@github.com:Kauri-2018/kaufee.git",
   "author": "EDA",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "knex": "knex --knexfile server/db/knexfile.js"
+  },
+  "dependencies": {
+    "knex": "^0.14.6",
+    "sqlite3": "^4.0.0"
+  }
 }
