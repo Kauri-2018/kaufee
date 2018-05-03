@@ -13,6 +13,9 @@ class Home extends React.Component {
   }
   componentDidMount () {
     this.props.dispatch(showOrders())
+    this.setState({
+      orders: orders
+    })
   }
 
   render () {

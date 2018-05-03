@@ -1,14 +1,27 @@
 import {getOrders} from '../apiClient'
 
-export function showOrders (orders) {
-  getOrders()
+export const SHOW_ORDERS = 'SHOW_ORDERS'
+export const SHOW_ERROR = 'SHOW_ERROR'
+
+export const showError = (errorMessage) => {
   return {
-    type: 'SHOW_ORDERS',
-    orders: orders.map((order, id) => ({
-      id: id + 1,
-      order: order.order,
-      name: order.name
-    }))
+    type: SHOW_ERROR,
+    errorMessage: errorMessage
+  }
+}
+
+export const requestOrders = () => {
+  return dispatch => {
+    return getOrders()
+      .then(orders => {
+        dispatch(showOrders(orders))
+      })
+  }
+}
+export function showOrders (orders) {
+  return {
+    type: SHOW_ORDERS,
+    orders
   }
 }
 
