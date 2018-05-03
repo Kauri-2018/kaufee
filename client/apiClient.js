@@ -12,3 +12,10 @@ export function registerUser (userDetails) {
     .send(userDetails)
     .then(res => res.body.token)
 }
+
+export function getUsers () {
+  return request.get('/api/v1/users')
+    .then(res => {
+      return res.body
+    })
+}
