@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import Order from './Order'
+import Users from './Users'
 import {requestCurrentOrder, requestUsers} from '../actions'
 
 class Home extends React.Component {
@@ -47,7 +48,7 @@ class Home extends React.Component {
               <div className="dropdown-content">
                 {users.map(user =>
                   <Users key={user.id}
-                    {...order}
+                    {...users}
                   />
                 )}
               </div>
