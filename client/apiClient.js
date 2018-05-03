@@ -6,8 +6,11 @@ export const getCurrentOrder = () => {
       return res.body
     })
 }
-    
+
 export function registerUser (userDetails) {
   // Request new user
-  // Returns a promise with new user id and token
+  return request.post('/register')
+    .send(userDetails)
+    // Then return the token that was received
+    .then(res => res.body.token)
 }
