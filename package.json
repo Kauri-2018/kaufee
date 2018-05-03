@@ -7,10 +7,10 @@
   "author": "EDA",
   "license": "MIT",
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=9.11.0"
   },
   "scripts": {
-    "knex": "knex --knexfile server/db/knexfile.js",    
+    "knex": "knex --knexfile ./server/db/knexfile.js",    
     "dev": "nodemon server --watch server & yarn build --watch",
     "start": "node server",
     "build": "webpack --watch --config ./client/webpack.config.js",
