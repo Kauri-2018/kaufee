@@ -1,4 +1,3 @@
-
 exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
   return knex('order_items').del()
@@ -9,13 +8,15 @@ exports.seed = (knex, Promise) => {
           id: 1,
           user_id: 1,
           order_id: 1,
-          order_text: 'flat white'
+          order_text: 'flat white',
+          user_name: 'test person 1'
         },
         {
           id: 2,
           user_id: 1,
           order_id: 2,
-          order_text: 'latte'
+          order_text: 'latte',
+          user_name: 'test person 2'
         }
       ])
     })
