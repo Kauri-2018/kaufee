@@ -7,10 +7,10 @@
   "author": "EDA",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server --watch server & webpack --watch --config ./client/webpack.config.js",
+    "dev": "nodemon server --watch server & yarn build --watch",
     "test": "jest --watchAll",
     "start": "node server",
-    "postinstall": "webpack --config ./client/webpack.config.js"
+    "build": "webpack --config ./client/webpack.config.js"
   },
   "babel": {
     "presets": [
