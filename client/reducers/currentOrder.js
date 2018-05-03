@@ -1,6 +1,6 @@
 const currentOrder = (state = [], action) => {
   switch (action.type) {
-    case 'SHOW_CURRENTORDER':
+    case 'SHOW_CURRENT_ORDER':
       return action.currentOrder
 
     default:
