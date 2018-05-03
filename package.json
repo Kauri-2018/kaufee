@@ -2,8 +2,62 @@
   "name": "kaufee",
   "version": "0.1.0",
   "description": "coffee ordering app",
-  "main": "index.js",
+  "main": "server/index.js",
   "repository": "git@github.com:Kauri-2018/kaufee.git",
   "author": "EDA",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=9.11.0"
+  },
+  "scripts": {
+    "knex": "knex --knexfile ./server/db/knexfile.js",    
+    "dev": "nodemon server --watch server & yarn build --watch",
+    "start": "node server",
+    "build": "webpack --config ./client/webpack.config.js",
+    "test": "jest --watchAll",
+    "postinstall": "yarn build"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "jest": {
+      "setupFiles": [
+        "./tests/client/configure.js",
+        "./tests/client/setup-dom.js"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "knex": "^0.14.6",
+    "sodium": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "cheerio": "^1.0.0-rc.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-mock-store": "^1.5.1",
+    "redux-thunk": "^2.2.0",
+    "sqlite3": "^4.0.0",
+    "superagent": "^3.8.3",
+    "supertest": "^3.0.0",
+    "webpack": "^3.11.0"
+  }
 }
