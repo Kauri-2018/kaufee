@@ -9,6 +9,7 @@ class Login extends React.Component {
       password: ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.attemptUserLogin = this.attemptUserLogin.bind(this)
   }
 
   handleChange (e) {
