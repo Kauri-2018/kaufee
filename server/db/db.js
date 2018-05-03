@@ -3,7 +3,8 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 
 module.exports = {
-  getCurrentOrder
+  getCurrentOrder,
+  getOrders
 }
 
 function getCurrentOrder (orderId, conn = connection) {
@@ -14,13 +15,11 @@ function getCurrentOrder (orderId, conn = connection) {
       'orders.id as orderId',
       'order_items.user_name as userName',
       'order_items.order_text as orderDetails',
-      'order_items.id as orderItemId')
-    // .then(results => {
-    //   return {
-    //     orderId: results.orderId,
-    //     userName: results.userName,
-    //     orderDetails: results.orderDetails,
-    //     orderItemId: results.orderItemId
-    //   }
-    // }
+      'order_items.id as orderItemId'
+    )
+}
+
+function getOrders (conn = connection) {
+  return conn('orders')
+    .select()
 }

@@ -17,12 +17,18 @@ test('test the environment', () => {
 })
 
 test('getCurrentOrder returns 1 coffee order', () => {
-  const expected = 1
-  const id = 1
-  return db.getCurrentOrder(id, testDb)
+  return db.getCurrentOrder(1, testDb)
     .then(orders => {
-      console.log(orders)
       const actual = orders.length
+      expect(actual).toBe(1)
+    })
+})
+
+test('getOrders returns all of orders table', () => {
+  const expected = 1
+  return db.getOrders(testDb)
+    .then(results => {
+      const actual = results.length
       expect(actual).toBe(expected)
     })
 })
