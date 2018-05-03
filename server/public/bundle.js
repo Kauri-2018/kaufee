@@ -26872,7 +26872,6 @@ var Home = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'order-container' },
-        'hello world',
         this.props.orders.map(function (order) {
           return _react2.default.createElement(_Order2.default, _extends({ key: order.id
           }, order));

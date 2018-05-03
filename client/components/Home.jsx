@@ -12,7 +12,6 @@ class Home extends React.Component {
   render () {
     return (
       <div className='order-container'>
-      hello world
         {this.props.orders.map(order =>
           <Order key={order.id}
             {...order}
