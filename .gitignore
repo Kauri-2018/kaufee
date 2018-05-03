@@ -2,3 +2,5 @@ node_modules
 dev.sqlite3
 bundle.js
 bundle.js.map
+yarn-error.log
+*.log
