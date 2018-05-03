@@ -21,6 +21,9 @@ class Register extends React.Component {
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
+        .then(token => {
+          localStorage.setItem('token', token)
+        })
     }
   }
 
