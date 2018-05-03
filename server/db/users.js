@@ -14,7 +14,7 @@ function userExists(username, db = knex) {
 
 
 function createUser(username, name, password, db = knex) {
-  const hash = addgenerate(password)
+  const hash = generate(password)
   return db('creds')
     .insert({
       username,
