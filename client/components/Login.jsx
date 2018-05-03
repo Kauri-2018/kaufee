@@ -22,6 +22,7 @@ class Login extends React.Component {
     if (this.state.username && this.state.password) {
       loginUser({...this.state})
         .then(token => {
+          // TODO separate to different module
           localStorage.setItem('token', token)
         })
     }
