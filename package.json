@@ -13,7 +13,7 @@
     "knex": "knex --knexfile ./server/db/knexfile.js",    
     "dev": "nodemon server --watch server & yarn build --watch",
     "start": "node server",
-    "build": "webpack --watch --config ./client/webpack.config.js",
+    "build": "webpack --config ./client/webpack.config.js",
     "test": "jest --watchAll",
     "postinstall": "yarn build"
   },
@@ -24,6 +24,12 @@
     ],
     "plugins": [
       "transform-object-rest-spread"
+    ]
+  },
+  "jest": {
+      "setupFiles": [
+        "./tests/client/configure.js",
+        "./tests/client/setup-dom.js"
     ]
   },
   "dependencies": {
@@ -41,12 +47,10 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.4.3",
-    "nock": "^9.1.6",
     "nodemon": "^1.17.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
-    "react-redux-form": "^1.16.8",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-mock-store": "^1.5.1",

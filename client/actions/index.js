@@ -3,14 +3,14 @@ import {getCurrentOrder} from '../apiClient'
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_ERROR = 'SHOW_ERROR'
 
-export const showError = (errorMessage) => {
+export function showError (errorMessage) {
   return {
     type: SHOW_ERROR,
     errorMessage: errorMessage
   }
 }
 
-export const requestCurrentOrder = () => {
+export function requestCurrentOrder () {
   return dispatch => {
     return getCurrentOrder()
       .then(currentOrder => {
@@ -18,6 +18,7 @@ export const requestCurrentOrder = () => {
       })
   }
 }
+
 export function showCurrentOrder (currentOrder) {
   return {
     type: SHOW_CURRENT_ORDER,

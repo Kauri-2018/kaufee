@@ -5,7 +5,7 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './dev.sqlite3'
+      filename: path.join(__dirname, 'dev.sqlite3')
     },
     useNullAsDefault: true
   },
@@ -54,4 +54,5 @@ module.exports = {
       directory: path.join(__dirname, 'migrations')
     },
     useNullAsDefault: true
-  }}
+  }
+}
