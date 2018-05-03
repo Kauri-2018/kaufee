@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 
-import orders from './orders'
+import currentOrder from './currentOrder'
 
 export default combineReducers({
-  orders
+  currentOrder
 })

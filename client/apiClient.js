@@ -1,7 +1,7 @@
 import request from 'superagent'
 
-export const getOrders = () => {
-  return request.get('/api/v1/orders')
+export const getCurrentOrder = () => {
+  return request.get('/api/v1/CurrentOrder')
     .then(res => {
       return res.body
     })

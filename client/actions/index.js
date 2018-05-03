@@ -1,6 +1,6 @@
-import {getOrders} from '../apiClient'
+import {getCurrentOrder} from '../apiClient'
 
-export const SHOW_ORDERS = 'SHOW_ORDERS'
+export const SHOW_CURRENTORDER = 'SHOW_CURRENTORDER'
 export const SHOW_ERROR = 'SHOW_ERROR'
 
 export const showError = (errorMessage) => {
@@ -10,27 +10,17 @@ export const showError = (errorMessage) => {
   }
 }
 
-export const requestOrders = () => {
+export const requestCurrentOrder = () => {
   return dispatch => {
-    return getOrders()
-      .then(orders => {
-        dispatch(showOrders(orders))
+    return getCurrentOrder()
+      .then(currentOrder => {
+        dispatch(showCurrentOrder(currentOrder))
       })
   }
 }
-export function showOrders (orders) {
+export function showCurrentOrder (currentOrder) {
   return {
-    type: SHOW_ORDERS,
-    orders
+    type: SHOW_CURRENTORDER,
+    currentOrder
   }
 }
-
-// export const addOrder = (order) => {
-//   return (dispatch) => {
-//     request.post('/api/v1/orders')
-//       .send({order})
-//       .then(() => {
-//         dispatch(getOrders())
-//       })
-//   }
-// }
