@@ -1,17 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getOrders} from '../actions'
+import Order from './Order'
+import {showOrders} from '../actions'
 
 class Home extends React.Component {
+  constructor (props) {
+    state(props)
+    this.state = {
+      orders
+    }
+  }
   componentDidMount () {
-    this.props.dispatch(getOrders())
+    this.props.dispatch(showOrders())
   }
 
-  render (props) {
+  render () {
     return (
       <div className='order-container'>
-        <Order />
+        {this.state.orders.map(order =>
+          <Order key={order.id}
+            {...order}
+          />
+        )}
       </div>
     )
   }
