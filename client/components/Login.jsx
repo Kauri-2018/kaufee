@@ -20,6 +20,9 @@ class Login extends React.Component {
   attemptUserLogin () {
     if (this.state.username && this.state.password) {
       loginUser({...this.state})
+        .then(token => {
+          localStorage.setItem('token', token)
+        })
     }
   }
 
