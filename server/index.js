@@ -1,7 +1,8 @@
-const app = require('./server')
-const port = process.env.PORT || 3000
+const server = require('./server')
 
-app.listen(port, () => {
+const PORT = 3000
+
+server.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log('Server listening on port', port)
+  console.log('Server is listening on port:', PORT)
 })
