@@ -23,6 +23,10 @@ class Login extends React.Component {
         .then(token => {
           localStorage.setItem('token', token)
         })
+        .catch(err => {
+          // TODO Handle errors better
+          console.error(err.message)
+        })
     }
   }
 
