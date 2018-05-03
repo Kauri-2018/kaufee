@@ -1,4 +1,5 @@
 node_modules
 dev.sqlite3
+bundle.*
 yarn-error.log
 *.log
