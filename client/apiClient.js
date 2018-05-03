@@ -1,16 +1,14 @@
 import request from 'superagent'
 
-export const getCurrentOrder = () => {
-  return request.get('/api/v1/CurrentOrder')
+export function getCurrentOrder () {
+  return request.get('/api/v1/current-order')
     .then(res => {
       return res.body
     })
 }
 
 export function registerUser (userDetails) {
-  // Request new user
-  return request.post('/register')
+  return request.post('/api/v1/auth/register')
     .send(userDetails)
-    // Then return the token that was received
     .then(res => res.body.token)
 }
