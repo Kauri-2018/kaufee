@@ -25,6 +25,7 @@ class Home extends React.Component {
     e.preventDefault()
     this.props.dispatch(updateOrder(this.state.userId, this.props.orderId))
   }
+  
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
