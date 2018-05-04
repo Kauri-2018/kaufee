@@ -1,6 +1,7 @@
-import {getCurrentOrder} from '../apiClient'
+import {getCurrentOrder, getUsers, addOrderItem} from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
+export const SHOW_USERS = 'SHOW_USERS'
 export const SHOW_ERROR = 'SHOW_ERROR'
 
 export function showError (errorMessage) {
@@ -23,5 +24,30 @@ export function showCurrentOrder (currentOrder) {
   return {
     type: SHOW_CURRENT_ORDER,
     currentOrder
+  }
+}
+
+export function requestUsers () {
+  return dispatch => {
+    return getUsers()
+      .then(userList => {
+        dispatch(showUsers(userList))
+      })
+  }
+}
+
+export function showUsers (userList) {
+  return {
+    type: SHOW_USERS,
+    userList
+  }
+}
+
+export function updateOrder (userId, orderId) {
+  return dispatch => {
+    return addOrderItem(userId, orderId)
+      .then(() => {
+        dispatch(requestCurrentOrder())
+      })
   }
 }
