@@ -13,14 +13,19 @@ router.post('/register', register)
 function login (req, res, next) {
   db.getCredsByName(req.body.username)
     .then(user => {
-      return user || invalidCredentials(res)
+      if (typeof user === 'undefined') {
+        return invalidCredentials(res)
+      } else {
+        return user
+      }
     })
     .then(user => {
       return user && hash.verifyUser(user.hash, req.body.password)
     })
-    .then(isValid => {
-      return isValid ? next() : invalidCredentials(res)
-    })
+    .then(() => invalidCredentials(res))
+    // .then(isValid => {
+    //   return isValid ? next() : invalidCredentials(res)
+    // })
     .catch(() => {
       res.status(400).json({
         errorType: 'DATABASE_ERROR'
