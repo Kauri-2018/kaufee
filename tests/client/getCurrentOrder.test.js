@@ -11,7 +11,7 @@ jest.mock('../../client/apiClient', () => ({
   ])
 }))
 
-test('getCurrentOrder sends request to api/v1/current-order', () => {
+test('getCurrentOrder returns order', () => {
   const expected = [
     {
       orderId: 1,
@@ -23,5 +23,13 @@ test('getCurrentOrder sends request to api/v1/current-order', () => {
   return getCurrentOrder()
     .then(res => {
       expect(res).toEqual(expected)
+    })
+})
+
+test('getCurrentOrder sends request to api/v1/current-order', () => {
+  const expected = 200
+  return getCurrentOrder()
+    .then(res => {
+      expect(res.status).toBe(expected)
     })
 })
