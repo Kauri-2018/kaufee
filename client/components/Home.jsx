@@ -15,11 +15,11 @@ class Home extends React.Component {
       <div className='order-container'>
         <h2>Current Order</h2>
         <ul>
-          {orders.map(order =>
-            <Order key={order.id}
-              {...order}
-            />
-          )}
+        {orders.map(order =>
+          <Order key={order.id}
+            {...order}
+          />
+        )}
         </ul>
       </div>
     )
