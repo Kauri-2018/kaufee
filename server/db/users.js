@@ -3,7 +3,7 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 const {generate} = require('../auth/hash')
 
-function getCredsByName (username, db=connection) {
+function getCredsByName (username, db = connection) {
   return db('creds')
     .select()
     .where('username', username)
