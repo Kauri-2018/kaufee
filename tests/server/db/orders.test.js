@@ -32,3 +32,17 @@ test('getOrders returns all of orders table', () => {
       expect(actual).toBe(expected)
     })
 })
+
+test('orderExists finds existing order', () => {
+  return db.orderExists(1, testDb)
+    .then(orderExists => {
+      expect(orderExists).toBeTruthy()
+    })
+})
+
+test('orderExists doesn\'t find non-existing order', () => {
+  return db.orderExists(-1, testDb)
+    .then(orderExists => {
+      expect(orderExists).toBeFalsy()
+    })
+})

@@ -10,12 +10,12 @@ module.exports = {
 }
 
 function addToOrder (userId, orderId, conn = connection) {
-  return orders.orderExists(orderId)
+  return orders.orderExists(orderId, conn)
     .then(orderExists => {
       if (!orderExists) {
         return new Error('Order does not exist.')
       }
-      return users.getUser(userId)
+      return users.getUser(userId, conn)
         .then(user => {
           if (!user) {
             return new Error('User does not exist.')
