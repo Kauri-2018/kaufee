@@ -28,9 +28,9 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/order-item/:orderId/:userId', (req, res) => {
-  const orderId = req.params.orderId
-  const userId = req.params.userId
+router.post('/', (req, res) => {
+  const orderId = req.body.orderId
+  const userId = req.body.userId
   orderItems.addToOrder(userId, orderId)
     .then(() => {
       res.sendStatus(200)

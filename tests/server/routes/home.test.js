@@ -35,28 +35,43 @@ test('get /api/v1/current-order returns current order', () => {
     })
 })
 
-test('post /api/v1/current-order/order-item/:orderId/:userId add to order', () => {
+test('post /api/v1/current-order add to order', () => {
   const expected = 200
+  const orderData = {
+    userId: 1,
+    orderId: 1
+  }
   return request(server)
-    .post('/api/v1/current-order/order-item/1/1')
+    .post('/api/v1/current-order')
+    .send(orderData)
     .then(res => {
       expect(res.status).toBe(expected)
     })
 })
 
-test('post /api/v1/current-order/order-item/0/1 should not add to order', () => {
+test('post /api/v1/current-order should not add to order', () => {
   const expected = 500
+  const orderData = {
+    userId: 0,
+    orderId: 1
+  }
   return request(server)
-    .post('/api/v1/current-order/order-item/0/1')
+    .post('/api/v1/current-order')
+    .send(orderData)
     .then(res => {
       expect(res.status).toBe(expected)
     })
 })
 
-test('post /api/v1/current-order/order-item/1/0 should not add to order', () => {
+test('post /api/v1/current-order should not add to order', () => {
   const expected = 500
+  const orderData = {
+    userId: 1,
+    orderId: 0
+  }
   return request(server)
-    .post('/api/v1/current-order/order-item/1/0')
+    .post('/api/v1/current-order')
+    .send(orderData)
     .then(res => {
       expect(res.status).toBe(expected)
     })
