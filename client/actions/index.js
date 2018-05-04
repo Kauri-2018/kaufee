@@ -46,6 +46,8 @@ export function showUsers (userList) {
 export function updateOrder (userId, orderId) {
   return dispatch => {
     return addOrderItem(userId, orderId)
-      .then(dispatch(requestCurrentOrder()))
+      .then(() => {
+        dispatch(requestCurrentOrder())
+      })
   }
 }

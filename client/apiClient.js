@@ -20,14 +20,13 @@ export function getUsers () {
     })
 }
 
-export function addOrderItem (userId, orderId, callback) {
+export function addOrderItem (userId, orderId) {
   const data = {
     userId,
     orderId
   }
   return request.post('/api/v1/current-order')
     .send(data)
-    .callback()
 }
 
 export function loginUser (userDetails) {
