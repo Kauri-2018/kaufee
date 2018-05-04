@@ -10,7 +10,7 @@
     "node": ">=9.11.0"
   },
   "scripts": {
-    "knex": "knex --knexfile ./server/db/knexfile.js",    
+    "knex": "knex --knexfile ./server/db/knexfile.js",
     "dev": "nodemon server --watch server & yarn build --watch",
     "start": "node server",
     "build": "webpack --config ./client/webpack.config.js",
@@ -27,13 +27,15 @@
     ]
   },
   "jest": {
-      "setupFiles": [
-        "./tests/client/configure.js",
-        "./tests/client/setup-dom.js"
+    "setupFiles": [
+      "./tests/client/configure.js",
+      "./tests/client/setup-dom.js"
     ]
   },
   "dependencies": {
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.1",
     "knex": "^0.14.6",
     "sodium": "^2.0.3"
   },
