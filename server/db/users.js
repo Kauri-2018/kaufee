@@ -3,6 +3,13 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 const {generate} = require('../auth/hash')
 
+function getCredsByName (username, db=connection) {
+  return db('creds')
+    .select()
+    .where('username', username)
+    .first()
+}
+
 function userExists (username, db = connection) {
   return db('creds')
     .count('id as n')
@@ -20,9 +27,9 @@ function createUser (username, name, password, db = connection) {
       hash
     })
     .then((id) => {
-      db('users')
+      return db('users')
         .insert({
-          cred_id: id,
+          cred_id: id[0],
           name,
           order_text: ''
         })
@@ -41,6 +48,7 @@ function getUser (userId, conn = connection) {
 }
 
 module.exports = {
+  getCredsByName,
   userExists,
   createUser,
   getUser
