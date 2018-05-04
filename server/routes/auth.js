@@ -1,12 +1,33 @@
 const express = require('express')
 
 const db = require('../db/users')
+const hash = require('../auth/hash')
 
 const router = express.Router()
 
 router.use(express.json())
 
+router.post('/login', login)
 router.post('/register', register)
+
+function login (req, res, next) {
+  db.getCredsByName(req.body.username)
+  .then(user => {
+    return user || invalidCredentials(res)
+  })
+  .then (user => {
+    return user && hash.verifyUser(user.hash, req.body.password)
+  })
+  .then(isValid =>{
+    //create the issueJWT fn references as next()
+  return isValid? next() : invalidCredentials(res)
+  })
+  .catch(() => {
+    res.status(400).send({
+      errorType :'DATABASE_ERROR'
+    })
+  })
+}
 
 function register (req, res) {
   db.userExists(req.body.username)
@@ -21,6 +42,12 @@ function register (req, res) {
     .catch(err => {
       res.status(500).json({message: err.message})
     })
+}
+
+function invalidCredentials (res) {
+  res.status(400).send ({
+    errorType: 'INVALID_CREDENTIALS'
+  })
 }
 
 module.exports = router
