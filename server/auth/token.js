@@ -6,10 +6,10 @@ module.exports = {
 
 function issue (req, res) {
   db.getCredsByName(req.body.username)
-    .then(token => {
+    .then(user => {
       res.json({
         message: 'Authentication successful.',
-        token
+        token: user.hash
       })
     })
 }
