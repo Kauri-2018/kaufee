@@ -37,6 +37,7 @@
     "express": "^4.16.2",
     "jsonwebtoken": "^8.2.1",
     "knex": "^0.14.6",
+    "nock": "^9.2.5",
     "sodium": "^2.0.3"
   },
   "devDependencies": {
