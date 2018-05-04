@@ -19,21 +19,20 @@ test('test the environment', () => {
 test('addToOrder adds a new order', () => {
   return db.addToOrder(2, 1, testDb)
     .then(numInserted => {
-      console.log(numInserted)
-      expect(numInserted).toBe(1)
+      expect(numInserted.length).toBe(1)
     })
 })
 
-/* test('addToOrder does not add on non-existent order', () => {
-  return db.getUser(10, testDb)
-    .then(user => {
-      expect(user).toBeFalsy()
+test('addToOrder does not add on non-existent order', () => {
+  return db.addToOrder(2, -1, testDb)
+    .catch(err => {
+      expect(err.message).toMatch('Order does not exist.')
     })
 })
 
 test('addToOrder does not add on non-existent user', () => {
-  return db.getUser(10, testDb)
-    .then(user => {
-      expect(user).toBeFalsy()
+  return db.addToOrder(-1, 1, testDb)
+    .catch(err => {
+      expect(err.message).toMatch('User does not exist.')
     })
-}) */
+})
