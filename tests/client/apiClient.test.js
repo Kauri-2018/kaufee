@@ -3,17 +3,13 @@ const request = require('supertest')
 jest.mock('../../client/apiClient', () => ({
   getCurrentOrder: () => Promise.resolve([
     {
-      id: 1,
-      items: [
-        {
-          id: 1,
-          name: 'Tori',
-          order: 'flat white'
-        }
-      ]
+      orderId: 1,
+      userName: 'Sarah',
+      orderDetails: 'flat white',
+      orderItemsId: 1
     }
   ]
-  )
+)
 }))
 
 const server = require('../../server/server')
