@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 router.post('/order-item/:orderId/:userId', (req, res) => {
   const orderId = req.params.orderId
   const userId = req.params.userId
-  orderItems.getOrders(userId, orderId)
+  orderItems.addToOrder(userId, orderId)
     .then(() => {
       res.sendStatus(200)
     })
