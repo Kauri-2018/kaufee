@@ -1,22 +1,16 @@
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
-const knex = require('knex')(config)
-const { generate } = require('../auth/hash')
+const connection = require('knex')(config)
+const {generate} = require('../auth/hash')
 
-module.exports = {
-  userExists,
-  createUser,
-  getCredsByName
-}
-
-function getCredsByName (username, db=knex) {
+function getCredsByName (username, db = connection) {
   return db('creds')
     .select()
     .where('username', username)
     .first()
 }
 
-function userExists(username, db = knex) {
+function userExists(username, db = connection) {
   return db('creds')
     .count('id as n')
     .where('username', username)
@@ -25,7 +19,8 @@ function userExists(username, db = knex) {
     })
 }
 
-function createUser(username, name, password, db = knex) {
+
+function createUser(username, name, password, db = connection) {
   const hash = generate(password)
   return db('creds')
     .insert({
@@ -41,3 +36,10 @@ function createUser(username, name, password, db = knex) {
       })
     })
 }
+
+module.exports = {
+  userExists,
+  createUser,
+  getCredsByName
+}
+
