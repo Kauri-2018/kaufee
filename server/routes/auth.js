@@ -13,11 +13,7 @@ router.post('/register', register)
 function login (req, res, next) {
   db.getCredsByName(req.body.username)
     .then(user => {
-      if (typeof user === 'undefined') {
-        return invalidCredentials(res)
-      } else {
-        return user
-      }
+      return user || invalidCredentials(res)
     })
     .then(user => {
       return user && hash.verifyUser(user.hash, req.body.password)
