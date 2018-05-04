@@ -1,14 +1,14 @@
 const express = require('express')
 
 const db = require('../db/users')
+const token = require('../auth/token')
 const hash = require('../auth/hash')
-
 const router = express.Router()
 
 router.use(express.json())
 
-router.post('/login', login)
-router.post('/register', register)
+router.post('/register', register, token.issue)
+router.post('/login', login, token.issue)
 
 function login (req, res, next) {
   db.getCredsByName(req.body.username)
@@ -18,10 +18,9 @@ function login (req, res, next) {
     .then(user => {
       return user && hash.verifyUser(user.hash, req.body.password)
     })
-    .then(() => invalidCredentials(res))
-    // .then(isValid => {
-    //   return isValid ? next() : invalidCredentials(res)
-    // })
+    .then(isValid => {
+      return isValid && next()
+    })
     .catch(() => {
       res.status(400).json({
         errorType: 'DATABASE_ERROR'
@@ -29,7 +28,7 @@ function login (req, res, next) {
     })
 }
 
-function register (req, res) {
+function register (req, res, next) {
   db.userExists(req.body.username)
     .then(exists => {
       if (exists) {
@@ -37,7 +36,7 @@ function register (req, res) {
       }
       const {username, name, password} = req.body
       db.createUser(username, name, password)
-        .then(() => res.sendStatus(201))
+        .then(() => next())
     })
     .catch(err => {
       res.status(500).json({message: err.message})

@@ -27,9 +27,9 @@ function createUser (username, name, password, db = connection) {
       hash
     })
     .then((id) => {
-      db('users')
+      return db('users')
         .insert({
-          cred_id: id,
+          cred_id: id[0],
           name,
           order_text: ''
         })
@@ -48,8 +48,9 @@ function getUser (userId, conn = connection) {
 }
 
 module.exports = {
+  getCredsByName,
   userExists,
   createUser,
-  getCredsByName,
   getUser
 }
+
