@@ -12,3 +12,26 @@ export function registerUser (userDetails) {
     .send(userDetails)
     .then(res => res.body.token)
 }
+
+export function getUsers () {
+  return request.get('/api/v1/users/')
+    .then(res => {
+      return res.body
+    })
+}
+
+export function addOrderItem (userId, orderId, callback) {
+  const data = {
+    userId,
+    orderId
+  }
+  return request.post('/api/v1/current-order')
+    .send(data)
+    .callback()
+}
+
+export function loginUser (userDetails) {
+  return request.post('/api/v1/auth/login')
+    .send(userDetails)
+    .then(res => res.body.token)
+}
