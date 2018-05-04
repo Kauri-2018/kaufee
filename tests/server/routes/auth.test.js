@@ -16,3 +16,13 @@ test('post /api/v1/auth/register', () => {
       expect(res.statusCode).toBe(201)
     })
 })
+
+test('post /api/v1/auth/logn', () => {
+  return request(server)
+    .post('/api/v1/auth/login')
+    .send({username: 'notfoo'})
+    .set('Accept', 'application/json')
+    .then(res => {
+      expect(res.statusCode).toBe(500)
+    })
+})

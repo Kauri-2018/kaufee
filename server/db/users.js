@@ -19,7 +19,6 @@ function userExists(username, db = connection) {
     })
 }
 
-
 function createUser(username, name, password, db = connection) {
   const hash = generate(password)
   return db('creds')
