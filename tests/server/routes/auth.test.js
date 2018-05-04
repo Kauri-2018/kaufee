@@ -17,12 +17,12 @@ test('post /api/v1/auth/register', () => {
     })
 })
 
-test('post /api/v1/auth/logn', () => {
+test('post /api/v1/auth/login', () => {
   return request(server)
     .post('/api/v1/auth/login')
     .send({username: 'notfoo'})
     .set('Accept', 'application/json')
     .then(res => {
-      expect(res.statusCode).toBe(500)
+      expect(res.statusCode).toBe(201)
     })
 })

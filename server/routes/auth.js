@@ -12,27 +12,26 @@ router.post('/register', register)
 
 function login (req, res, next) {
   db.getCredsByName(req.body.username)
-  .then(user => {
-    return user || invalidCredentials(res)
-  })
-  .then (user => {
-    return user && hash.verifyUser(user.hash, req.body.password)
-  })
-  .then(isValid =>{
-    //create the issueJWT fn references as next()
-  return isValid? next() : invalidCredentials(res)
-  })
-  .catch(() => {
-    res.status(400).send({
-      errorType :'DATABASE_ERROR'
+    .then(user => {
+      return user || invalidCredentials(res)
     })
-  })
+    .then(user => {
+      return user && hash.verifyUser(user.hash, req.body.password)
+    })
+    .then(isValid => {
+      return isValid ? next() : invalidCredentials(res)
+    })
+    .catch(() => {
+      res.status(400).json({
+        errorType: 'DATABASE_ERROR'
+      })
+    })
 }
 
 function register (req, res) {
   db.userExists(req.body.username)
     .then(exists => {
-      if(exists) {
+      if (exists) {
         return res.status(400).json({message: 'User exists'})
       }
       const {username, name, password} = req.body
@@ -45,7 +44,7 @@ function register (req, res) {
 }
 
 function invalidCredentials (res) {
-  res.status(400).send ({
+  res.status(400).json({
     errorType: 'INVALID_CREDENTIALS'
   })
 }
