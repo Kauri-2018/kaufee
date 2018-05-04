@@ -61,6 +61,6 @@
     "superagent": "^3.8.3",
     "supertest": "^3.0.0",
     "webpack": "^3.11.0",
-    "nock": "^9.2.5",
+    "nock": "^9.2.5"
   }
 }
