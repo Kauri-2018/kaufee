@@ -8,8 +8,7 @@ jest.mock('../../../server/db/orders', () => ({
       orderDetails: 'flat white',
       orderItemsId: 1
     }
-  ]
-  )
+  ])
 }))
 
 const server = require('../../../server/server')
