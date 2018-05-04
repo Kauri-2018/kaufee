@@ -5,7 +5,8 @@ const connection = require('knex')(config)
 module.exports = {
   getCurrentOrder,
   getOrders,
-  getUsers
+  getUsers,
+  orderExists
 }
 
 function getCurrentOrder (orderId, conn = connection) {
@@ -28,4 +29,11 @@ function getOrders (conn = connection) {
 function getUsers (conn = connection) {
   return conn('users')
     .select()
+}
+
+function orderExists (orderId, conn = connection) {
+  return conn('orders')
+    .where('id', '=', orderId)
+    .first()
+    .then(order => !!order)
 }

@@ -24,3 +24,9 @@ export function postUpdateOrder (userId, orderId, callback) {
   return request.post(`/api/v1/current-order/order-item/${orderId}/${userId}`)
     .then(callback)
 }
+
+export function loginUser (userDetails) {
+  return request.post('/api/v1/auth/login')
+    .send(userDetails)
+    .then(res => res.body.token)
+}
