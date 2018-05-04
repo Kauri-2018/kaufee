@@ -27,11 +27,18 @@ export function addOrderItem (userId, orderId, callback) {
   }
   return request.post('/api/v1/current-order')
     .send(data)
-    .callback()
 }
 
 export function loginUser (userDetails) {
   return request.post('/api/v1/auth/login')
     .send(userDetails)
     .then(res => res.body.token)
+}
+
+export function orderIsComplete (orderId) {
+  const data = {
+    orderId
+  }
+  return request.put('/api/v1/current-order/is-complete')
+    .send(data)
 }

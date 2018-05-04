@@ -6,13 +6,14 @@ module.exports = {
   getCurrentOrder,
   getOrders,
   getUsers,
-  orderExists
+  orderExists,
+  markCompleted
 }
 
-function getCurrentOrder (orderId, conn = connection) {
+function getCurrentOrder (conn = connection) {
   return conn('orders')
     .join('order_items', 'orders.id', '=', 'order_items.order_id')
-    .where('orders.id', '=', orderId)
+    .where('is_complete', '=', 0)
     .select(
       'orders.id as orderId',
       'order_items.user_name as userName',
@@ -36,4 +37,10 @@ function orderExists (orderId, conn = connection) {
     .where('id', '=', orderId)
     .first()
     .then(order => !!order)
+}
+
+function markCompleted (orderId, conn = connection) {
+  return conn('orders')
+    .where('id', '=', orderId)
+    .update({is_complete: 1})
 }

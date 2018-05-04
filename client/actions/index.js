@@ -1,4 +1,4 @@
-import {getCurrentOrder, getUsers, addOrderItem} from '../apiClient'
+import {getCurrentOrder, getUsers, addOrderItem, orderIsComplete} from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'
@@ -47,5 +47,11 @@ export function updateOrder (userId, orderId) {
   return dispatch => {
     return addOrderItem(userId, orderId)
       .then(dispatch(requestCurrentOrder()))
+  }
+}
+
+export function orderComplete (orderId) {
+  return dispatch => {
+    return orderIsComplete(orderId)
   }
 }
