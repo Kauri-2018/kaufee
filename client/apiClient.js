@@ -14,15 +14,20 @@ export function registerUser (userDetails) {
 }
 
 export function getUsers () {
-  return request.get('/api/v1/current-order/getusers')
+  return request.get('/api/v1/users/')
     .then(res => {
       return res.body
     })
 }
 
-export function postUpdateOrder (userId, orderId, callback) {
-  return request.post(`/api/v1/current-order/order-item/${orderId}/${userId}`)
-    .then(callback)
+export function addOrderItem (userId, orderId, callback) {
+  const data = {
+    userId,
+    orderId
+  }
+  return request.post('/api/v1/current-order')
+    .send(data)
+    .callback()
 }
 
 export function loginUser (userDetails) {

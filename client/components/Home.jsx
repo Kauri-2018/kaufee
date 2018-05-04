@@ -9,8 +9,7 @@ class Home extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      userId: 0,
-      orderId: 0
+      userId: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
@@ -18,14 +17,13 @@ class Home extends React.Component {
 
   handleChange (e) {
     this.setState({
-      userId: e.target.value,
-      orderId: this.props.order_id
+      userId: e.target.value
     })
   }
 
   handleAdd (e) {
     e.preventDefault()
-    this.props.dispatch(updateOrder(this.state.userId, this.state.orderId))
+    this.props.dispatch(updateOrder(this.state.userId, this.props.orderId))
   }
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
@@ -66,7 +64,7 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    order_id: state.currentOrder.id,
+    orderId: state.currentOrder.id,
     orders: state.currentOrder.items,
     users: state.userList
   }

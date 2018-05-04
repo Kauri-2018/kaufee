@@ -26,13 +26,3 @@ router.get('/', (req, res) => {
       res.status(500).send(err.message)
     })
 })
-
-router.get('/getusers', (req, res) => {
-  db.getUsers()
-    .then(users => {
-      res.json(users)
-    })
-    .catch(err => {
-      res.status(500).send(err.message)
-    })
-})
