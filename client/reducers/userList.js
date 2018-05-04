@@ -1,4 +1,4 @@
-const initialUserList = {users: []}
+const initialUserList = []
 
 export default function (userList = initialUserList, action) {
   switch (action.type) {

@@ -3,33 +3,38 @@ import {connect} from 'react-redux'
 
 import Order from './Order'
 import Users from './Users'
-import {requestCurrentOrder, requestUsers} from '../actions'
+import {requestCurrentOrder, requestUsers, updateOrder} from '../actions'
 
 class Home extends React.Component {
   constructor (props) {
     super(props)
-
-    // this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      userId: 0,
+      orderId: 0
+    }
+    this.handleChange = this.handleChange.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
   }
 
-  // handleChange (e) {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
+  handleChange (e) {
+    this.setState({
+      userId: e.target.value,
+      orderId: this.props.order_id
+    })
+  }
 
   handleAdd (e) {
     e.preventDefault()
-    this.sendNewPost()
-    window.location.reload()
+    this.props.dispatch(updateOrder(this.state.userId, this.state.orderId))
   }
   componentDidMount () {
-    this.props.dispatch(requestCurrentOrder(), requestUsers())
+    this.props.dispatch(requestCurrentOrder())
+    this.props.dispatch(requestUsers())
   }
 
   render () {
     const orders = this.props.orders || []
+    const users = this.props.users || []
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
@@ -43,16 +48,14 @@ class Home extends React.Component {
         <div className='addorder'>
           <form onSubmit={this.handleAdd}>
             <h2>Add Order</h2>
-            <div className="dropdown">
-              <button className="dropbtn">Users</button>
-              <div className="dropdown-content">
-                {users.map(user =>
-                  <Users key={user.id}
-                    {...users}
-                  />
-                )}
-              </div>
-            </div>
+            <select onChange={this.handleChange} >
+              <option>Select User</option>
+              {users.map(user =>
+                <Users key={user.id}
+                  {...user}
+                />
+              )}
+            </select>
             <button className="btn btn-submit">Add to Order</button>
           </form>
         </div>
@@ -63,6 +66,7 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    order_id: state.currentOrder.id,
     orders: state.currentOrder.items,
     users: state.userList
   }

@@ -1,4 +1,4 @@
-import {getCurrentOrder, getUsers} from '../apiClient'
+import {getCurrentOrder, getUsers, postUpdateOrder} from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'
@@ -40,5 +40,12 @@ export function showUsers (userList) {
   return {
     type: SHOW_USERS,
     userList
+  }
+}
+
+export function updateOrder (userId, orderId) {
+  return dispatch => {
+    return postUpdateOrder(userId, orderId)
+      .then(dispatch(requestCurrentOrder()))
   }
 }
