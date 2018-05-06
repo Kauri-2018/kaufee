@@ -2,11 +2,8 @@ import { getUsers } from '../../../client/apiClient'
 
 const nock = require('nock')
 
-const baseUrl = 'http://localhost'
-const path = '/api/v1/users'
-
-nock(baseUrl)
-  .get(path)
+nock('http://localhost')
+  .get('/api/v1/users')
   .reply(200, 'complete')
 
 test('getUsers sends get request to server', () => {
