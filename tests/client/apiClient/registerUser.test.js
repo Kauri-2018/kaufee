@@ -6,7 +6,7 @@ const userDetails = {
   id: 1,
   name: 'Janie',
   email: 'janie@test.com',
-  token: 'thisisthetoken'
+  token: 'this is the token'
 }
 
 nock('http://localhost')
@@ -16,6 +16,6 @@ nock('http://localhost')
 test('registerUsers sends post request to server', () => {
   return registerUser(userDetails)
     .then(res => {
-      expect(res).toContain('thisisthetoken')
+      expect(res).toContain('this is the token')
     })
 })
