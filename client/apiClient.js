@@ -32,5 +32,5 @@ export function addOrderItem (userId, orderId) {
 export function loginUser (userDetails) {
   return request.post('/api/v1/auth/login')
     .send(userDetails)
-    .then(res => res.body.token)
+    .then(res => res)
 }
