@@ -10,17 +10,21 @@ router.use(express.json())
 module.exports = router
 
 router.get('/', (req, res) => {
-  const orderId = 1 // TODO: read from request
-  db.getCurrentOrder(orderId)
+  db.getCurrentOrder()
     .then(items => {
+      if (!items.length) {
+        return res.json({isCurrentOrderActive: false})
+      }
       const currentOrder = {
         id: items[0].orderId,
         items: items.map(item => ({
           id: item.orderItemId,
           name: item.userName,
-          order: item.orderDetails
+          order: item.orderDetails,
+          isCurrentOrderActive: true
         }))
       }
+
       res.json(currentOrder)
     })
     .catch(err => {
@@ -32,6 +36,17 @@ router.post('/', (req, res) => {
   const orderId = req.body.orderId
   const userId = req.body.userId
   orderItems.addToOrder(userId, orderId)
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
+})
+
+router.put('/is-complete', (req, res) => {
+  const orderId = req.body.orderId
+  db.markCompleted(orderId)
     .then(() => {
       res.sendStatus(200)
     })
