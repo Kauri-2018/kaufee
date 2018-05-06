@@ -5,7 +5,8 @@ const nock = require('nock')
 nock('http://localhost')
   .post('/api/v1/auth/register')
   .reply(200, {
-    message: 'Test successful'
+    name: 'Janie',
+    email: 'janie@test.com'
   })
 
 test('registerUsers sends post request to server', () => {
