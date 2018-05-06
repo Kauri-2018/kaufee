@@ -1,4 +1,4 @@
-import {getCurrentOrder} from '../../../client/apiClient'
+import { getCurrentOrder } from '../../../client/apiClient'
 
 const nock = require('nock')
 
