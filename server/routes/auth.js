@@ -13,12 +13,12 @@ router.post('/login', login, token.issue)
 function login (req, res, next) {
   db.getCredsByName(req.body.username)
     .then(user => {
-      return user || invalidCredentials(res)
-    })
-    .then(user => {
       return user && hash.verifyUser(user.hash, req.body.password)
     })
     .then(isValid => {
+      if (!isValid) {
+        return invalidCredentials(res)
+      }
       return isValid && next()
     })
     .catch(() => {
