@@ -12,6 +12,9 @@ module.exports = router
 router.get('/', (req, res) => {
   db.getCurrentOrder()
     .then(items => {
+      if (!items.length) {
+        return res.json({message: 'No current orders'})
+      }
       const currentOrder = {
         id: items[0].orderId,
         items: items.map(item => ({
@@ -20,6 +23,7 @@ router.get('/', (req, res) => {
           order: item.orderDetails
         }))
       }
+
       res.json(currentOrder)
     })
     .catch(err => {
