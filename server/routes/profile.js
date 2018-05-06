@@ -8,6 +8,9 @@ router.use(express.json())
 
 module.exports = router
 
+// profile get route
+
+/*
 router.get('/', (req, res) => {
   db.getProfile()
     .then(() => {
@@ -17,5 +20,6 @@ router.get('/', (req, res) => {
       res.status(500).send(err.message)
     })
 })
+*/
 
 // profile post route
