@@ -2,7 +2,8 @@ const request = require('supertest')
 
 // jest mock api data
 
-jest.mock('../../../server/db/profile', () => ({
+/*
+jest.mock('../../../server/db/users', () => ({
   // Profile route to mock
   get: (id) => Promise.resolve([
     {
@@ -10,6 +11,7 @@ jest.mock('../../../server/db/profile', () => ({
     }
   ])
 }))
+*/
 
 const server = require('../../../server/server')
 
