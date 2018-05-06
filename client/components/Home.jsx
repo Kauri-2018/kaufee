@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Order from './Order'
 import Users from './Users'
 import {requestCurrentOrder, requestUsers, updateOrder} from '../actions'
+import CreateNew from './CreateNew'
 
 class Home extends React.Component {
   constructor (props) {
@@ -25,7 +26,7 @@ class Home extends React.Component {
     e.preventDefault()
     this.props.dispatch(updateOrder(this.state.userId, this.props.orderId))
   }
-  
+
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
@@ -57,6 +58,7 @@ class Home extends React.Component {
             </select>
             <button className="btn btn-submit">Add to Order</button>
           </form>
+          <CreateNew />
         </div>
       </div>
     )
