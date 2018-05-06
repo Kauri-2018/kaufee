@@ -34,3 +34,11 @@ export function loginUserReq (userDetails) {
     .send(userDetails)
     .then(res => res)
 }
+
+export function orderIsComplete (orderId) {
+  const data = {
+    orderId
+  }
+  return request.put('/api/v1/current-order/is-complete')
+    .send(data)
+}
