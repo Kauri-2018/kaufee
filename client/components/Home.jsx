@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import Order from './Order'
 import Users from './Users'
-import {requestCurrentOrder, requestUsers, updateOrder} from '../actions'
+import {requestCurrentOrder, requestUsers, updateOrder, orderComplete} from '../actions'
 
 class Home extends React.Component {
   constructor (props) {
@@ -13,6 +13,7 @@ class Home extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+    this.markComplete = this.markComplete.bind(this)
   }
 
   handleChange (e) {
@@ -25,7 +26,11 @@ class Home extends React.Component {
     e.preventDefault()
     this.props.dispatch(updateOrder(this.state.userId, this.props.orderId))
   }
-  
+
+  markComplete () {
+    this.props.dispatch(orderComplete(this.props.orderId))
+  }
+
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
@@ -44,6 +49,9 @@ class Home extends React.Component {
             />
           )}
         </ul>
+        <div className="completed">
+          <button onClick={this.markComplete}>Mark as Complete</button>
+        </div>
         <div className='addorder'>
           <form onSubmit={this.handleAdd}>
             <h2>Add Order</h2>
