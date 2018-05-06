@@ -24,6 +24,27 @@ exports.seed = (knex, Promise) => {
           order_id: 1,
           order_text: 'long black',
           user_name: 'Tony'
+        },
+        {
+          id: 4,
+          user_id: 1,
+          order_id: 2,
+          order_text: 'flat white',
+          user_name: 'Don'
+        },
+        {
+          id: 5,
+          user_id: 2,
+          order_id: 2,
+          order_text: 'latte',
+          user_name: 'Emily'
+        },
+        {
+          id: 6,
+          user_id: 3,
+          order_id: 2,
+          order_text: 'long black',
+          user_name: 'Tony'
         }
       ])
     })

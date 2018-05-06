@@ -55,5 +55,8 @@ export function updateOrder (userId, orderId) {
 export function orderComplete (orderId) {
   return dispatch => {
     return orderIsComplete(orderId)
+      .then(() => {
+        dispatch(requestCurrentOrder())
+      })
   }
 }

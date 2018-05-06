@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/is-complete', (req, res) => {
+router.put('/is-complete', (req, res) => {
   const orderId = req.body.orderId
   db.markCompleted(orderId)
     .then(() => {
