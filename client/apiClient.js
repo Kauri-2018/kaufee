@@ -14,7 +14,7 @@ export function registerUser (userDetails) {
 }
 
 export function getUsers () {
-  return request.get('/api/v1/users/')
+  return request.get('/api/v1/users')
     .then(res => {
       return res.body
     })
