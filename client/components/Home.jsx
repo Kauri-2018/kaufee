@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import Order from './Order'
+import OrderList from './OrderList'
 import Users from './Users'
 import {requestCurrentOrder, requestUsers, updateOrder} from '../actions'
 
@@ -25,7 +25,7 @@ class Home extends React.Component {
     e.preventDefault()
     this.props.dispatch(updateOrder(this.state.userId, this.props.orderId))
   }
-  
+
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
@@ -37,13 +37,7 @@ class Home extends React.Component {
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        <ul>
-          {orders.map(order =>
-            <Order key={order.id}
-              {...order}
-            />
-          )}
-        </ul>
+        <OrderList orders={orders} />
         <div className='addorder'>
           <form onSubmit={this.handleAdd}>
             <h2>Add Order</h2>
