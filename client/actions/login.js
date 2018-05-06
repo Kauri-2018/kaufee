@@ -1,4 +1,4 @@
-import {loginUser} from '../apiClient'
+import {loginUserReq} from '../apiClient'
 import {decodedToken} from '../utils/auth'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
@@ -27,13 +27,14 @@ function loginError (message) {
   }
 }
 
-export function loginUserReq (userDetails) {
+export function loginUser (userDetails) {
   return dispatch => {
     dispatch(requestLogin())
-    return loginUser(userDetails)
+    return loginUserReq(userDetails)
       .then(res => {
         if (!res.ok) {
           dispatch(loginError(res.body.message))
+          return Promise.reject(res.body.message)
         } else {
           const userData = decodedToken(res.body.token)
           dispatch(receiveLogin(userData))
