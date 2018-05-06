@@ -2,30 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import OrderList from './OrderList'
-import Users from './Users'
-import {requestCurrentOrder, requestUsers, updateOrder} from '../actions'
+import {requestCurrentOrder, requestUsers} from '../actions'
+import AddToOrder from './AddToOrder'
 
 class Home extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      userId: 0
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleAdd = this.handleAdd.bind(this)
-  }
-
-  handleChange (e) {
-    this.setState({
-      userId: e.target.value
-    })
-  }
-
-  handleAdd (e) {
-    e.preventDefault()
-    this.props.dispatch(updateOrder(this.state.userId, this.props.orderId))
-  }
-
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
@@ -33,25 +13,11 @@ class Home extends React.Component {
 
   render () {
     const orders = this.props.orders || []
-    const users = this.props.users || []
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
         <OrderList orders={orders} />
-        <div className='addorder'>
-          <form onSubmit={this.handleAdd}>
-            <h2>Add Order</h2>
-            <select onChange={this.handleChange} >
-              <option>Select User</option>
-              {users.map(user =>
-                <Users key={user.id}
-                  {...user}
-                />
-              )}
-            </select>
-            <button className="btn btn-submit">Add to Order</button>
-          </form>
-        </div>
+        <AddToOrder />
       </div>
     )
   }
@@ -59,9 +25,7 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    orderId: state.currentOrder.id,
-    orders: state.currentOrder.items,
-    users: state.userList
+    orders: state.currentOrder.items
   }
 }
 
