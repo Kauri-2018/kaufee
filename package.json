@@ -36,6 +36,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.2.1",
+    "jwt-decode": "^2.2.0",
     "knex": "^0.14.6",
     "sodium": "^2.0.3"
   },
@@ -49,6 +50,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.4.3",
+    "nock": "^9.2.5",
     "nodemon": "^1.17.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -60,7 +62,6 @@
     "sqlite3": "^4.0.0",
     "superagent": "^3.8.3",
     "supertest": "^3.0.0",
-    "webpack": "^3.11.0",
-    "nock": "^9.2.5"
+    "webpack": "^3.11.0"
   }
 }

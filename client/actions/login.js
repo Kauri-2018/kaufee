@@ -1,4 +1,5 @@
 import {loginUser} from '../apiClient'
+import {decodedToken} from '../utils/auth'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -34,7 +35,8 @@ export function loginUserReq (userDetails) {
         if (!res.ok) {
           dispatch(loginError(res.body.message))
         } else {
-          dispatch(receiveLogin(res.body.token))
+          const userData = decodedToken(res.body.token)
+          dispatch(receiveLogin(userData))
         }
       })
   }
