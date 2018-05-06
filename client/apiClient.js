@@ -29,7 +29,7 @@ export function addOrderItem (userId, orderId) {
     .send(data)
 }
 
-export function loginUser (userDetails) {
+export function loginUserReq (userDetails) {
   return request.post('/api/v1/auth/login')
     .send(userDetails)
     .then(res => res)
