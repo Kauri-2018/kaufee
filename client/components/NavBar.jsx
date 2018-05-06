@@ -1,15 +1,34 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-const NavBar = () => {
+const NavBar = ({isAuth, user}) => {
   return (
     <div className="navbar">
-      <Link to="/">Home</Link> |
-      <Link to="/history">History</Link> |
-      <Link to="/register">Register</Link> |
-      <Link to="/login">Login</Link>
+      {!isAuth && (
+        <div>
+          <Link to="/">Home</Link> |
+          <Link to="/history">History</Link> |
+          <Link to="/register">Register</Link> |
+          <Link to="/login">Login</Link>
+        </div>
+      )}
+      {isAuth && (
+        <div>
+          <Link to="/">Home</Link> |
+          <Link to="/history">History</Link> |
+          <Link to="/profile">{user.username}</Link> |
+          <Link to="">Logout</Link>
+        </div>
+      )}
     </div>
   )
 }
 
-export default NavBar
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuthenticated,
+    user: state.auth.user || {}
+  }
+}
+export default connect(mapStateToProps)(NavBar)
