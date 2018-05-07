@@ -53,13 +53,15 @@ export function addOrderItem (userId, orderId) {
 }
 
 export function deleteItem (orderItemId) {
+  const token = localStorage.getItem('token')
   return request.delete(`/api/v1/current-order/${orderItemId}`)
+    .set('Authorization', `Bearer ${token}`)
 }
 
 export function loginUser (userDetails) {
   return request.post('/api/v1/auth/login')
     .send(userDetails)
-    .then(res => res.body.token)
+    .then(res => res)
 }
 
 export function orderIsComplete (orderId) {

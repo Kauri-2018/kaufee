@@ -7,6 +7,7 @@ import Login from './Login'
 import Profile from './Profile'
 import NavBar from './NavBar'
 import PastOrders from './PastOrders'
+import Barista from './Barista'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/login' component={Login} />
         <Route path='/profile' component={Profile} />
         <Route path='/history' component={PastOrders} />
+        <Route path='/barista' component={Barista} />
       </div>
     </Router>
   )
