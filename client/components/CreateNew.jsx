@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 
 import {requestNewOrder} from '../actions'
 
@@ -10,7 +10,7 @@ class CreateNew extends React.Component {
   }
 
   createNewOrder () {
-    this.props.dispatch(requestNewOrder(this.props.isCurrentOrderActive))
+    this.props.dispatch(requestNewOrder())
   }
 
   render () {
@@ -22,10 +22,4 @@ class CreateNew extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isCurrentOrderActive: state.currentOrder.isCurrentOrderActive
-  }
-}
-
-export default connect(mapStateToProps)(CreateNew)
+export default CreateNew
