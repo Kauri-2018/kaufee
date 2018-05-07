@@ -39,7 +39,7 @@ class Home extends React.Component {
         <div className="completed">
           <button onClick={this.markComplete}>Mark as Complete</button>
         </div>
-        <AddToOrder/>
+        <AddToOrder />
       </div>
     )
   }

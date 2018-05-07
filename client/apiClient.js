@@ -50,8 +50,8 @@ export function addOrderItem (userId, orderId) {
     .send(data)
 }
 
-export function deleteItem (userItemId) {
-  return request.delete(`/api/v1/current-order/${userItemId}`)
+export function deleteItem (orderItemId) {
+  return request.delete(`/api/v1/current-order/${orderItemId}`)
 }
 
 export function loginUser (userDetails) {
