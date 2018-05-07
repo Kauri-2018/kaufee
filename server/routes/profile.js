@@ -11,8 +11,9 @@ module.exports = router
 // profile get route
 
 router.get('/', (req, res) => {
-  db.getUser()
-    .then((user) => {
+  const id = req.params.id
+  db.getUser(id)
+    .then(user => {
       res.json(user)
     })
     .catch(err => {
