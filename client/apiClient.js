@@ -44,10 +44,11 @@ export function orderIsComplete (orderId) {
 }
 
 export function addOrder () {
-  const data = {
-    id: 3,
-    items: []
-  }
   return request.put('/api/v1/current-order/new-order')
-    .send(data)
+    .then(res => {
+      return {
+        id: res.body.id,
+        items: []
+      }
+    })
 }

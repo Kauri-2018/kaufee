@@ -70,8 +70,8 @@ export function orderComplete (orderId) {
 export function createNewOrder (state) {
   return dispatch => {
     return addOrder()
-      .then(res => {
-        dispatch(showCurrentOrder(res))
+      .then(currentOrder => {
+        dispatch(showCurrentOrder(currentOrder))
       })
   }
 }
