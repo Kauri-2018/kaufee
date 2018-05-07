@@ -1,6 +1,6 @@
-import { getUsers } from '../../../client/apiClient'
+import nock from 'nock'
 
-const nock = require('nock')
+import {getUsers} from '../../../client/apiClient'
 
 nock('http://localhost')
   .get('/api/v1/users')

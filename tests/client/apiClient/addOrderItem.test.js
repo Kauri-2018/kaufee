@@ -1,6 +1,6 @@
-import { addOrderItem } from '../../../client/apiClient'
+import nock from 'nock'
 
-const nock = require('nock')
+import {addOrderItem} from '../../../client/apiClient'
 
 const userId = {
   id: 1

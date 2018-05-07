@@ -1,6 +1,6 @@
-import { getCurrentOrder } from '../../../client/apiClient'
+import nock from 'nock'
 
-const nock = require('nock')
+import {getCurrentOrder} from '../../../client/apiClient'
 
 nock('http://localhost')
   .get('/api/v1/current-order')

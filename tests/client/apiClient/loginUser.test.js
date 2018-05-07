@@ -1,6 +1,6 @@
-import { loginUser } from '../../../client/apiClient'
+import nock from 'nock'
 
-const nock = require('nock')
+import {loginUser} from '../../../client/apiClient'
 
 const userDetails = {
   id: 1,
