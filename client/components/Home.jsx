@@ -40,8 +40,12 @@ class Home extends React.Component {
         <div className="completed">
           <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
         </div>
+<<<<<<< HEAD
         <AddToOrder />
         <CreateNew isActive={this.props.isCurrentOrderActive} />
+=======
+        {this.props.isAuth && (<AddToOrder />)}
+>>>>>>> a5f19086432b09533462a8aae0adf517e12d929c
       </div>
     )
   }
@@ -49,6 +53,7 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    isAuth: state.auth.isAuthenticated,
     orderId: state.currentOrder.id,
     orders: state.currentOrder.items,
     isCurrentOrderActive: state.currentOrder.isCurrentOrderActive

@@ -53,7 +53,9 @@ export function addOrderItem (userId, orderId) {
 }
 
 export function deleteItem (orderItemId) {
+  const token = localStorage.getItem('token')
   return request.delete(`/api/v1/current-order/${orderItemId}`)
+    .set('Authorization', `Bearer ${token}`)
 }
 
 export function loginUser (userDetails) {

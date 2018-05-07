@@ -42,7 +42,7 @@ router.post('/', token.decode, (req, res) => {
   userExists(req.user.username)
     .then(userExists => {
       if (userExists) {
-        orderItems.addToOrder(userId, orderId)
+        return orderItems.addToOrder(userId, orderId)
           .then(() => {
             res.sendStatus(200)
           })
