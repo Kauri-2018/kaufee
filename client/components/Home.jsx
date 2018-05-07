@@ -31,11 +31,11 @@ class Home extends React.Component {
   }
 
   render () {
-    const orders = this.props.orders || []
+    const items = this.props.items || []
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        <OrderList orders={orders} onClickFn={this.deleteItem} />
+        <OrderList items={items} onClickFn={this.deleteItem} />
         <div className="completed">
           <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
         </div>
@@ -48,7 +48,7 @@ class Home extends React.Component {
 const mapStateToProps = (state) => {
   return {
     orderId: state.currentOrder.id,
-    orders: state.currentOrder.items
+    items: state.currentOrder.items
   }
 }
 

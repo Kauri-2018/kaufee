@@ -2,7 +2,7 @@ import React from 'react'
 
 import Order from './Order'
 
-const OrderList = ({orders, onClickFn}) => (
+const OrderList = ({items, onClickFn}) => (
   <div className='orderlist'>
     <table>
       <thead>
@@ -13,11 +13,11 @@ const OrderList = ({orders, onClickFn}) => (
         </tr>
       </thead>
       <tbody>
-        {orders.map(order =>
+        {items.map(item =>
           <Order
-            key={order.id}
+            key={item.id}
             onClickFn = {onClickFn}
-            {...order}
+            {...item}
           />
         )}
       </tbody>

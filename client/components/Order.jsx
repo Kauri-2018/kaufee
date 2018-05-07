@@ -10,7 +10,7 @@ const Order = ({id, name, order, onClickFn}) => (
   <tr>
     <td>{name}</td>
     <td>{order}</td>
-    <td onClick={() => onClickFn(id)}><button>X</button></td>
+    {onClickFn && (<td onClick={() => onClickFn(id)}><button>X</button></td>)}
   </tr>
 )
 
