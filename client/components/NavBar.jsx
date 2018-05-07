@@ -8,10 +8,11 @@ const NavBar = ({isAuth, user}) => (
       <Link to="/"><button>Home</button></Link>
       <Link to="/history"><button>History</button></Link>
     </div>
-    {isAuth ? <div className="auth-elements" >
-      <Link key='profile' to="/profile"><button>{user.name}</button></Link>
-      <Link key='logout' to="/"><button>Logout</button></Link>
-    </div>
+    {isAuth
+      ? <div className="auth-elements" >
+        <Link key='profile' to="/profile"><button>{user.name}</button></Link>
+        <Link key='logout' to="/"><button>Logout</button></Link>
+      </div>
       : <div className="auth-elements" >
         <Link key='register' to="/register"><button>Register</button></Link>
         <Link key='login' to="/login"><button>Login</button></Link>
