@@ -35,8 +35,8 @@
   "dependencies": {
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
+    "express-jwt": "^5.3.1",
     "jsonwebtoken": "^8.2.1",
-    "jwt-decode": "^2.2.0",
     "knex": "^0.14.6",
     "sodium": "^2.0.3"
   },
