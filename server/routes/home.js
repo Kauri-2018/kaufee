@@ -44,6 +44,17 @@ router.post('/', (req, res) => {
     })
 })
 
+router.delete('/:itemId', (req, res) => {
+  const itemId = req.params.itemId
+  orderItems.deleteOrderItem(itemId)
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.put('/is-complete', (req, res) => {
   const orderId = req.body.orderId
   db.markCompleted(orderId)

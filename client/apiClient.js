@@ -14,10 +14,31 @@ export function registerUser (userDetails) {
 }
 
 export function getUsers () {
-  return request.get('/api/v1/users/')
+  return request.get('/api/v1/users')
     .then(res => {
       return res.body
     })
+}
+
+export function getUser () {
+  const token = localStorage.getItem('token')
+  return request.get('/api/v1/profile')
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => {
+      return res.body
+    })
+}
+
+export function updateUserProfile (user) {
+  const token = localStorage.getItem('token')
+  const data = {
+    userId: user.userId,
+    name: user.name,
+    orderText: user.orderText
+  }
+  return request.post('/api/v1/profile')
+    .set('Authorization', `Bearer ${token}`)
+    .send(data)
 }
 
 export function addOrderItem (userId, orderId) {
