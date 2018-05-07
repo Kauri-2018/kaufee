@@ -4,7 +4,7 @@ import Order from './Order'
 
 const OrderList = ({items = [], functionMessage, onClickFn}) => (
   <div className='orderlist'>
-    <table>
+    <table className='row'>
       <thead>
         <tr>
           <th>Name</th>

@@ -26,7 +26,7 @@ class Barista extends React.Component {
     const items = [...this.state.items]
     items.forEach(item => {
       if (item.id === id) {
-        item.isComplete = 1
+        item.isComplete = -item.isComplete
       }
     })
     this.setState({items})

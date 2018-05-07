@@ -16,9 +16,9 @@ const Order = ({id, name, order, isComplete, onClickFn}) => (
     }>
     <td>{name}</td>
     <td>{order}</td>
-    {onClickFn &&
-      (!isComplete || isComplete === -1) &&
-      (<td onClick={() => onClickFn(id)}><button>X</button></td>)}
+    {onClickFn && <td onClick={() => onClickFn(id)} >
+      <button className={'button-complete-fn' + (isComplete === 1 ? ' completed' : '')}>X</button>
+    </td>}
   </tr>
 )
 
