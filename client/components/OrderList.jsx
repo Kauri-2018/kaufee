@@ -2,22 +2,22 @@ import React from 'react'
 
 import Order from './Order'
 
-const OrderList = ({orders, onClickFn}) => (
+const OrderList = ({items = [], functionMessage, onClickFn}) => (
   <div className='orderlist'>
-    <table>
+    <table className='row'>
       <thead>
         <tr>
           <th>Name</th>
           <th>Ordered Item</th>
-          <th>Delete</th>
+          <th className='button-complete-fn-col'>{functionMessage}</th>
         </tr>
       </thead>
       <tbody>
-        {orders.map(order =>
+        {items.map(item =>
           <Order
-            key={order.id}
+            key={item.id}
             onClickFn = {onClickFn}
-            {...order}
+            {...item}
           />
         )}
       </tbody>

@@ -31,6 +31,7 @@ export function requestCurrentOrder () {
     return getCurrentOrder()
       .then(currentOrder => {
         dispatch(showCurrentOrder(currentOrder))
+        return currentOrder
       })
   }
 }
