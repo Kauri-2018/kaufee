@@ -9,6 +9,7 @@ class Home extends React.Component {
   constructor (props) {
     super(props)
     this.markComplete = this.markComplete.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
   }
 
   markComplete () {
@@ -20,16 +21,20 @@ class Home extends React.Component {
     this.props.dispatch(requestUsers())
   }
 
+  deleteItem (id) {
+    console.log(id)
+  }
+
   render () {
     const orders = this.props.orders || []
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        <OrderList orders={orders} />
+        <OrderList orders={orders} onClickFn={this.deleteItem} />
         <div className="completed">
           <button onClick={this.markComplete}>Mark as Complete</button>
         </div>
-        <AddToOrder />
+        <AddToOrder/>
       </div>
     )
   }
