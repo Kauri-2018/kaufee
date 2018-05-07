@@ -1,0 +1,11 @@
+.flex .flex-horizontal .flex-vertical {
+  display: flex;
+}
+
+.flex-vertical {
+  flex-direction: column;
+}
+
+.even-spacing {
+  justify-content: space-around
+}
