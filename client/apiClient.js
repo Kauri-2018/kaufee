@@ -59,7 +59,7 @@ export function deleteItem (orderItemId) {
 export function loginUser (userDetails) {
   return request.post('/api/v1/auth/login')
     .send(userDetails)
-    .then(res => res.body.token)
+    .then(res => res)
 }
 
 export function orderIsComplete (orderId) {
@@ -72,12 +72,9 @@ export function orderIsComplete (orderId) {
     .send(data)
 }
 
-export function addOrder () {
+export function addOrder (isActive) {
+  // const token = localStorage.getItem('token')
   return request.put('/api/v1/current-order/new-order')
-    .then(res => {
-      return {
-        id: res.body.id,
-        items: []
-      }
-    })
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body.isCurrentOrderActive)
 }

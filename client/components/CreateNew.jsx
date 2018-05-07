@@ -10,7 +10,7 @@ class CreateNew extends React.Component {
   }
 
   createNewOrder () {
-    this.props.dispatch(requestNewOrder())
+    this.props.dispatch(requestNewOrder(this.props.isCurrentOrderActive))
   }
 
   render () {

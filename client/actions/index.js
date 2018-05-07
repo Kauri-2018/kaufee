@@ -84,18 +84,19 @@ export function orderComplete (orderId) {
   }
 }
 
-export function showNewOrder () {
-  return {
-    type: SHOW_NEW_ORDER,
-    isCurrentOrderActive: true
-  }
-}
+// export function showNewOrder (currentOrder) {
+//   return {
+//     type: SHOW_NEW_ORDER,
+//     isCurrentOrderActive: true
+//   }
+// }
 
-export function requestNewOrder () {
+export function requestNewOrder (isActive) {
   return dispatch => {
-    return addOrder()
+    return addOrder(isActive)
+    // get the order back from the database
       .then(currentOrder => {
-        dispatch(showNewOrder())
+        dispatch(showCurrentOrder(currentOrder))
       })
   }
 }
