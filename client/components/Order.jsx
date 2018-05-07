@@ -7,12 +7,11 @@ import React from 'react'
  * @param {{id, name, order, onClickFn}} props
  */
 const Order = ({id, name, order, onClickFn}) => (
-  <li className="order-item">
-    <span className='order-item-line flex-horizontal'>
-      {name}: {order}
-      {onClickFn && (<div className='del-button' onClick={() => onClickFn(id)}>X</div>)}
-    </span>
-  </li>
+  <tr>
+    <td>{name}</td>
+    <td>{order}</td>
+    <td onClick={() => onClickFn(id)}><button>X</button></td>
+  </tr>
 )
 
 export default Order
