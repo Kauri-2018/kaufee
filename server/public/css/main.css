@@ -33,3 +33,8 @@ button.completed {
 .button-complete-fn {
   margin: -1em;
 }
+
+.button-complete-fn-col {
+  width: 8em;
+  text-align: center;
+}

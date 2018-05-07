@@ -9,7 +9,7 @@ const OrderList = ({items = [], functionMessage, onClickFn}) => (
         <tr>
           <th>Name</th>
           <th>Ordered Item</th>
-          <th>{functionMessage}</th>
+          <th className='button-complete-fn-col'>{functionMessage}</th>
         </tr>
       </thead>
       <tbody>
