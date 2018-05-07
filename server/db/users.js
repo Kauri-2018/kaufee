@@ -47,10 +47,16 @@ function getUser (userId, conn = connection) {
     .first()
 }
 
+function updateUser (userId, orderText, conn = connection) {
+  return conn('users')
+    .where('id', '=', userId)
+    .update('order_text', '=', orderText)
+}
+
 module.exports = {
   getCredsByName,
   userExists,
   createUser,
-  getUser
+  getUser,
+  updateUser
 }
-
