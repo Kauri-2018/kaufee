@@ -21,11 +21,13 @@ export function getUsers () {
 }
 
 export function addOrderItem (userId, orderId) {
+  const userToken = localStorage.getItem('token')
   const data = {
     userId,
     orderId
   }
   return request.post('/api/v1/current-order')
+    .set('token', userToken)
     .send(data)
 }
 
@@ -36,9 +38,11 @@ export function loginUser (userDetails) {
 }
 
 export function orderIsComplete (orderId) {
+  const userToken = localStorage.getItem('token')
   const data = {
     orderId
   }
   return request.put('/api/v1/current-order/is-complete')
+    .set('token', userToken)
     .send(data)
 }
