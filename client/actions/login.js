@@ -1,5 +1,5 @@
 import {loginUser, getUser} from '../apiClient'
-
+import {set} from '../utils/localStorage'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
@@ -12,7 +12,7 @@ function requestLogin () {
   }
 }
 
-function receiveLogin (user) {
+export function receiveLogin (user) {
   return {
     type: LOGIN_SUCCESS,
     user
@@ -35,6 +35,7 @@ export function login (userDetails) {
           dispatch(loginError(res.body.message))
           return Promise.reject(res.body.message)
         } else {
+          set('token', res.body.token)
           getUser()
             .then(user => {
               dispatch(receiveLogin(user))
