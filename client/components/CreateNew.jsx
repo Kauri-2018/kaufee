@@ -1,26 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {createNewOrder} from '../actions'
+import {requestNewOrder} from '../actions'
 
 class CreateNew extends React.Component {
   constructor (props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    this.createNewOrder = this.createNewOrder.bind(this)
   }
 
-  handleClick (e) {
-    e.preventDefault()
-    this.props.dispatch(createNewOrder(this.props.state))
-    this.setState({
-      isCurrentOrderActive: true
-    })
+  createNewOrder () {
+    this.props.dispatch(requestNewOrder())
   }
 
   render () {
     return (
       <div className="create-new-btn">
-        <button onClick={this.handleClick} className="btn btn-submit">Create New Order</button>
+        <button onClick={this.createNewOrder} className="btn btn-submit">Create New Order</button>
       </div>
     )
   }

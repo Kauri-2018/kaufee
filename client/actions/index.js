@@ -10,6 +10,7 @@ import {
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'
 export const SHOW_ERROR = 'SHOW_ERROR'
+export const SHOW_NEW_ORDER = 'SHOW_NEW_ORDER'
 
 export function showError (errorMessage) {
   return {
@@ -83,11 +84,18 @@ export function orderComplete (orderId) {
   }
 }
 
-export function createNewOrder ({isCurrentOrderActive}) {
+export function showNewOrder () {
+  return {
+    type: SHOW_NEW_ORDER,
+    isCurrentOrderActive: true
+  }
+}
+
+export function requestNewOrder () {
   return dispatch => {
     return addOrder()
       .then(currentOrder => {
-        dispatch(showCurrentOrder(currentOrder))
+        dispatch(showNewOrder())
       })
   }
 }
