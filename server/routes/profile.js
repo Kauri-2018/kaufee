@@ -19,5 +19,3 @@ router.get('/', token.decode, (req, res) => {
       res.status(500).send(err.message)
     })
 })
-
-// profile post route
