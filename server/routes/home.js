@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
       res.json(currentOrder)
     })
     .catch(err => {
-      res.status(500).send(err.message)
+      res.status(500).json({errorMessage: err.message})
     })
 })
 
@@ -51,7 +51,7 @@ router.post('/', token.decode, (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).send(err.message)
+      res.status(500).json({errorMessage: err.message})
     })
 })
 
@@ -70,7 +70,7 @@ router.delete('/:itemId', token.decode, (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).send(err.message)
+      res.status(500).json({errorMessage: err.message})
     })
 })
 
@@ -88,6 +88,6 @@ router.put('/is-complete', token.decode, (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).send(err.message)
+      res.status(500).json({errorMessage: err.message})
     })
 })

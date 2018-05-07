@@ -27,7 +27,7 @@ class Home extends React.Component {
         <h2>Current Order</h2>
         <OrderList orders={orders} />
         <div className="completed">
-          <button onClick={this.markComplete}>Mark as Complete</button>
+          <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
         </div>
         <AddToOrder />
       </div>
