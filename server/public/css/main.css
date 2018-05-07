@@ -9,3 +9,7 @@
 .even-spacing {
   justify-content: space-around
 }
+
+.navbar > Link > button {
+  width: 4em;
+}

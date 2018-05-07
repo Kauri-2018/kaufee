@@ -9,7 +9,7 @@ import NavBar from './NavBar'
 const App = () => {
   return (
     <Router>
-      <div className='app'>
+      <div className='app container'>
         <Route path='/' component={NavBar} />
         <Route exact path='/' component={Home} />
         <Route path='/register' component={Register} />
