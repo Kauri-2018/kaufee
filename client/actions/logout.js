@@ -1,25 +1,12 @@
 import {set} from '../utils/localStorage'
 
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const LOGOUT = 'LOGOUT'
 
-function requestLogout () {
+export function logout () {
+  set('token', null)
   return {
-    type: LOGOUT_REQUEST
-  }
-}
-
-function receiveLogout () {
-  return {
-    type: LOGOUT_SUCCESS,
+    type: LOGOUT,
     isAuthenticated: false,
-    user: ''
-  }
-}
-export function logoutUser () {
-  return dispatch => {
-    dispatch(requestLogout())
-    set('token', null)
-    dispatch(receiveLogout())
+    user: null
   }
 }

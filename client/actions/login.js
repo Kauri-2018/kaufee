@@ -12,7 +12,7 @@ function requestLogin () {
   }
 }
 
-function receiveLogin (user) {
+export function receiveLogin (user) {
   return {
     type: LOGIN_SUCCESS,
     user
@@ -31,11 +31,11 @@ export function login (userDetails) {
     dispatch(requestLogin())
     return loginUser(userDetails)
       .then(res => {
-        set('token', res.body.token)
         if (!res.ok) {
           dispatch(loginError(res.body.message))
           return Promise.reject(res.body.message)
         } else {
+          set('token', res.body.token)
           getUser()
             .then(user => {
               dispatch(receiveLogin(user))
