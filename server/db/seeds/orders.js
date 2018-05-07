@@ -7,7 +7,7 @@ exports.seed = (knex, Promise) => {
         {
           id: 1,
           date: 1524718675000,
-          is_complete: false,
+          is_complete: true,
           owner_id: 1
         },
         {
