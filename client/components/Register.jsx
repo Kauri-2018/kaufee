@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {registerUser, receiveLogin} from '../apiClient'
+import {registerUser, receiveLogin, getUser} from '../apiClient'
 
 class Register extends React.Component {
   constructor (props) {
@@ -28,6 +28,8 @@ class Register extends React.Component {
           // TODO Move to separate module at later stage
           localStorage.setItem('token', token)
         })
+        .then(() => this.props.loginUser())
+        .then(() => this.props.history.push('/profile'))
     }
   }
 
@@ -46,8 +48,11 @@ class Register extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginUser: loginData => {
-      return dispatch(receiveLogin(loginData))
+    loginUser: () => {
+      return getUser()
+        .then(user => {
+          dispatch(receiveLogin(user))
+        })
     }
   }
 }
