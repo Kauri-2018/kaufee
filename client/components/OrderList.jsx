@@ -2,15 +2,26 @@ import React from 'react'
 
 import Order from './Order'
 
-const OrderList = ({orders}) => (
+const OrderList = ({orders, onClickFn}) => (
   <div className='orderlist'>
-    <ul>
-      {orders.map(order =>
-        <Order key={order.id}
-          {...order}
-        />
-      )}
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Ordered Item</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map(order =>
+          <Order
+            key={order.id}
+            onClickFn = {onClickFn}
+            {...order}
+          />
+        )}
+      </tbody>
+    </table>
   </div>
 )
 
