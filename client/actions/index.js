@@ -4,13 +4,13 @@ import {
   addOrderItem,
   orderIsComplete,
   deleteItem,
-  addOrder
+  addOrder,
+  getUser
 } from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'
 export const SHOW_ERROR = 'SHOW_ERROR'
-export const SHOW_NEW_ORDER = 'SHOW_NEW_ORDER'
 
 export function showError (errorMessage) {
   return {
@@ -88,7 +88,18 @@ export function requestNewOrder () {
   return dispatch => {
     return addOrder()
       .then(() => {
-        dispatch(getCurrentOrder())
+        dispatch(getUser())
+          .then(user => {
+            return user
+          })
       })
+  }
+}
+
+export function startNewOrder (user) {
+  return dispatch => {
+    const userId = user.id
+    const orderId = user.orderId
+    return updateOrder(userId, orderId)
   }
 }

@@ -94,8 +94,8 @@ router.put('/is-complete', token.decode, (req, res) => {
 
 router.put('/new-order', (req, res) => {
   db.addNewOrder()
-    .then(res => {
-      res.json({isCurrentOrderActive: false})
+    .then(() => {
+      res.status(200)
     })
     .catch(err => {
       res.status(500).send(err.message)
