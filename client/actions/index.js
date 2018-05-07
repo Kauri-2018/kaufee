@@ -94,7 +94,6 @@ export function orderComplete (orderId) {
 export function requestNewOrder (isActive) {
   return dispatch => {
     return addOrder(isActive)
-    // get the order back from the database
       .then(currentOrder => {
         dispatch(showCurrentOrder(currentOrder))
       })

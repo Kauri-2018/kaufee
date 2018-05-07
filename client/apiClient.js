@@ -73,8 +73,5 @@ export function orderIsComplete (orderId) {
 }
 
 export function addOrder (isActive) {
-  // const token = localStorage.getItem('token')
   return request.put('/api/v1/current-order/new-order')
-    // .set('Authorization', `Bearer ${token}`)
-    .then(res => res.body.isCurrentOrderActive)
 }
