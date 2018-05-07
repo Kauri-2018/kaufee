@@ -5,22 +5,18 @@ import {Link} from 'react-router-dom'
 const NavBar = ({isAuth, user}) => {
   return (
     <div className="navbar">
-      {!isAuth && (
-        <div>
-          <Link to="/">Home</Link> |
-          <Link to="/history">History</Link> |
-          <Link to="/register">Register</Link> |
-          <Link to="/login">Login</Link>
-        </div>
-      )}
-      {isAuth && (
-        <div>
-          <Link to="/">Home</Link> |
-          <Link to="/history">History</Link> |
-          <Link to="/profile">{user.username}</Link> |
-          <Link to="/">Logout</Link>
-        </div>
-      )}
+      <Link to="/"><button>Home</button></Link>
+      <Link to="/history"><button>History</button></Link>
+      {isAuth
+        ? ([
+          <Link key='profile' to="/profile"><button>{user.username}</button></Link>,
+          <Link key='logout' to="/"><button>Logout</button></Link>
+        ])
+        : ([
+          <Link key='register' to="/register"><button>Register</button></Link>,
+          <Link key='login' to="/login"><button>Login</button></Link>
+        ])
+      }
     </div>
   )
 }
