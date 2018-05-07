@@ -17,7 +17,7 @@ class Barista extends React.Component {
     this.props.dispatch(requestCurrentOrder())
       .then(currentOrder => {
         const items = [...currentOrder.items]
-        items.forEach(item => { item.isComplete = false })
+        items.forEach(item => { item.isComplete = -1 })
         this.setState({items})
       })
   }
@@ -26,7 +26,7 @@ class Barista extends React.Component {
     const items = [...this.state.items]
     items.forEach(item => {
       if (item.id === id) {
-        item.isComplete = !item.isComplete
+        item.isComplete = 1
       }
     })
     this.setState({items})

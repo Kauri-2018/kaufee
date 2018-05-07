@@ -6,14 +6,14 @@ import OrderList from '../../../client/components/OrderList'
 OrderList.prototype.componentDidMount = () => {}
 
 test('<OrderList /> renders current order', () => {
-  const orders = [{
+  const items = [{
     id: 2,
     name: 'Kale',
     order: 'flat white'
   }]
   const expected = 1
 
-  const wrapper = render(<OrderList orders={orders} />)
+  const wrapper = render(<OrderList items={items} />)
 
-  expect(wrapper.find('.order').length).toBe(expected)
+  expect(wrapper.find('.order-item').length).toBe(expected)
 })

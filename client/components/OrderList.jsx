@@ -2,7 +2,7 @@ import React from 'react'
 
 import Order from './Order'
 
-const OrderList = ({items, functionMessage, onClickFn}) => (
+const OrderList = ({items = [], functionMessage, onClickFn}) => (
   <div className='orderlist'>
     <table>
       <thead>
