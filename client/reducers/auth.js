@@ -1,9 +1,11 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/login'
+import {LOGOUT} from '../actions/logout'
 
 const initState = {
   isFetching: false,
   isAuthenticated: false,
-  errorMessage: 'hai'
+  errorMessage: 'hai',
+  user: null
 }
 
 export default function (state = initState, action) {
@@ -27,6 +29,11 @@ export default function (state = initState, action) {
         isFetching: false,
         isAuthenticated: false,
         errorMessage: action.message
+      }
+    case LOGOUT:
+      return {
+        isAuthenticated: false,
+        user: null
       }
     default:
       return state

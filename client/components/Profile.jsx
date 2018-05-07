@@ -36,7 +36,6 @@ class Profile extends React.Component {
   render () {
     return (
       <div className='user-profile'>
-        <Link to="/">Home</Link>
         <h2>Name: {this.state.name}</h2>
         <h3>Current order: {this.state.orderText}</h3>
         <div className='change-order'>

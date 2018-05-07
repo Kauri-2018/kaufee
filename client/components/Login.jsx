@@ -23,6 +23,7 @@ class Login extends React.Component {
   attemptUserLogin () {
     if (this.state.username && this.state.password) {
       this.props.loginUser({...this.state})
+        .then(() => this.props.history.push('/profile'))
     }
   }
 
