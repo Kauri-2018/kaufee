@@ -48,8 +48,20 @@ function getUser (userId, conn = connection) {
     .first()
 }
 
+function getUserByCredsId (credsId, conn = connection) {
+  return conn('users')
+    .where('cred_id', '=', credsId)
+    .select(
+      'id as userId',
+      'cred_id as credId',
+      'name',
+      'order_text as orderText'
+    )
+    .first()
+}
 module.exports = {
   getCredsByName,
+  getUserByCredsId,
   userExists,
   createUser,
   getUser
