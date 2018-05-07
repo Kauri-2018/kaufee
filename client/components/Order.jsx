@@ -1,7 +1,10 @@
 import React from 'react'
 
 const Order = ({name, order}) => (
-  <li className="order">{name}: {order}</li>
+  <tr>
+    <td>{name}</td>
+    <td>{order}</td>
+  </tr>
 )
 
 export default Order

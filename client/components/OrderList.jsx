@@ -4,13 +4,18 @@ import Order from './Order'
 
 const OrderList = ({orders}) => (
   <div className='orderlist'>
-    <ul>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Drink</th>
+        <th>Delete</th>
+      </tr>
       {orders.map(order =>
         <Order key={order.id}
           {...order}
         />
       )}
-    </ul>
+    </table>
   </div>
 )
 
