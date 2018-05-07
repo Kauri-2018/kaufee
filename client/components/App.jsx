@@ -6,6 +6,7 @@ import Register from './Register'
 import Login from './Login'
 import Profile from './Profile'
 import NavBar from './NavBar'
+import PastOrders from './PastOrders'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path='/profile' component={Profile} />
+        <Route path='/history' component={PastOrders} />
       </div>
     </Router>
   )

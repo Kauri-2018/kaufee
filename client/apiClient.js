@@ -71,3 +71,8 @@ export function orderIsComplete (orderId) {
     .set('Authorization', `Bearer ${token}`)
     .send(data)
 }
+
+export function getAllOrders () {
+  return request.get('/api/v1/current-order/history')
+    .then(res => res.body)
+}

@@ -1,8 +1,16 @@
-import {getCurrentOrder, getUsers, addOrderItem, orderIsComplete, deleteItem} from '../apiClient'
+import {
+  getCurrentOrder,
+  getUsers,
+  addOrderItem,
+  orderIsComplete,
+  deleteItem,
+  getAllOrders
+} from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'
 export const SHOW_ERROR = 'SHOW_ERROR'
+export const SHOW_ALL_ORDER = 'SHOW_ALL_ORDER'
 
 export function showError (errorMessage) {
   return {
@@ -73,5 +81,21 @@ export function orderComplete (orderId) {
       .then(() => {
         dispatch(requestCurrentOrder())
       })
+  }
+}
+
+export function requestAllOrders () {
+  return dispatch => {
+    return getAllOrders()
+      .then(allOrders => {
+        dispatch(showAllOrder(allOrders))
+      })
+  }
+}
+
+export function showAllOrder (allOrders) {
+  return {
+    type: SHOW_ALL_ORDER,
+    allOrders
   }
 }

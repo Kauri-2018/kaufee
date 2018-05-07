@@ -1,0 +1,37 @@
+import React from 'react'
+import {connect} from 'react-redux'
+
+import {requestAllOrders} from '../actions'
+import ListPastOrders from './ListPastOrders'
+
+class PastOrders extends React.Component {
+  // constructor (props) {
+  //   super(props)
+
+  // }
+
+  componentDidMount () {
+    this.props.dispatch(requestAllOrders())
+  }
+
+  render () {
+    const orders = this.props.orders || []
+    return (
+      <div className='order-container'>
+        {/* {orders.map(order =>
+          <ListPastOrders key={order.id}
+            {...order}
+          />
+        )} */}
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    orders: state.allOrders
+  }
+}
+
+export default connect(mapStateToProps)(PastOrders)

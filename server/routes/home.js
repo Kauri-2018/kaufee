@@ -47,7 +47,7 @@ router.post('/', token.decode, (req, res) => {
             res.sendStatus(200)
           })
       } else {
-        res.status(403).end()
+        res.status(401).end()
       }
     })
     .catch(err => {
@@ -66,7 +66,7 @@ router.delete('/:itemId', token.decode, (req, res) => {
             res.sendStatus(200)
           })
       } else {
-        res.status(403).end()
+        res.status(401).end()
       }
     })
     .catch(err => {
@@ -84,8 +84,18 @@ router.put('/is-complete', token.decode, (req, res) => {
             res.sendStatus(200)
           })
       } else {
-        res.status(403).end()
+        res.status(401).end()
       }
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/history', (req, res) => {
+  db.getAllOrders()
+    .then(res => {
+      res.json(res)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
