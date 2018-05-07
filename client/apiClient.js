@@ -42,13 +42,13 @@ export function updateUserProfile (user) {
 }
 
 export function addOrderItem (userId, orderId) {
-  const userToken = localStorage.getItem('token')
+  const token = localStorage.getItem('token')
   const data = {
     userId,
     orderId
   }
   return request.post('/api/v1/current-order')
-    .set('token', userToken)
+    .set('Authorization', `Bearer ${token}`)
     .send(data)
 }
 
@@ -59,11 +59,11 @@ export function loginUser (userDetails) {
 }
 
 export function orderIsComplete (orderId) {
-  const userToken = localStorage.getItem('token')
+  const token = localStorage.getItem('token')
   const data = {
     orderId
   }
   return request.put('/api/v1/current-order/is-complete')
-    .set('token', userToken)
+    .set('Authorization', `Bearer ${token}`)
     .send(data)
 }
