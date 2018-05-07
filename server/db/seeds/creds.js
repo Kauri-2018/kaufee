@@ -8,32 +8,32 @@ exports.seed = (knex, Promise) => {
       return knex('creds').insert([
         {
           id: 20,
-          username: 'Don',
-          hash: generate(this.username + 'password')
+          username: 'don',
+          hash: generate('don')
         }, {
           id: 21,
-          username: 'Emily',
-          hash: generate(this.username + 'password')
+          username: 'emily',
+          hash: generate('emily')
         }, {
           id: 22,
-          username: 'Tony',
-          hash: generate(this.username + 'password')
+          username: 'tony',
+          hash: generate('tony')
         }, {
           id: 23,
-          username: 'Zoe',
-          hash: generate(this.username + 'password')
+          username: 'zoe',
+          hash: generate('zoe')
         }, {
           id: 24,
-          username: 'Kale',
-          hash: generate(this.username + 'password')
+          username: 'kale',
+          hash: generate('kake')
         }, {
           id: 25,
-          username: 'Zaeburn',
-          hash: generate(this.username + 'password')
+          username: 'zaeburn',
+          hash: generate('zaeburn')
         }, {
           id: 26,
-          username: 'Tori',
-          hash: generate(this.username + 'password')
+          username: 'tori',
+          hash: generate('tori')
         }
       ])
     })
