@@ -1,5 +1,8 @@
 const express = require('express')
 
+const token = require('../auth/token')
+const userExists = require('../db/users').userExists
+
 const db = require('../db/orders')
 const orderItems = require('../db/orderItems')
 
@@ -32,34 +35,57 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/', token.decode, (req, res) => {
   const orderId = req.body.orderId
   const userId = req.body.userId
-  orderItems.addToOrder(userId, orderId)
-    .then(() => {
-      res.sendStatus(200)
+
+  userExists(req.user.username)
+    .then(userExists => {
+      if (userExists) {
+        orderItems.addToOrder(userId, orderId)
+          .then(() => {
+            res.sendStatus(200)
+          })
+      } else {
+        res.status(403).end()
+      }
     })
     .catch(err => {
       res.status(500).send(err.message)
     })
 })
 
-router.delete('/:itemId', (req, res) => {
+router.delete('/:itemId', token.decode, (req, res) => {
   const itemId = req.params.itemId
-  orderItems.deleteOrderItem(itemId)
-    .then(() => {
-      res.sendStatus(200)
+
+  userExists(req.user.username)
+    .then(userExists => {
+      if (userExists) {
+        orderItems.deleteOrderItem(itemId)
+          .then(() => {
+            res.sendStatus(200)
+          })
+      } else {
+        res.status(403).end()
+      }
     })
     .catch(err => {
       res.status(500).send(err.message)
     })
 })
 
-router.put('/is-complete', (req, res) => {
+router.put('/is-complete', token.decode, (req, res) => {
   const orderId = req.body.orderId
-  db.markCompleted(orderId)
-    .then(() => {
-      res.sendStatus(200)
+  userExists(req.user.username)
+    .then(userExists => {
+      if (userExists) {
+        db.markCompleted(orderId)
+          .then(() => {
+            res.sendStatus(200)
+          })
+      } else {
+        res.status(403).end()
+      }
     })
     .catch(err => {
       res.status(500).send(err.message)
