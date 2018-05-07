@@ -6,17 +6,15 @@ const {generate} = require('../auth/hash')
 function getCredsByName (username, db = connection) {
   return db('creds')
     .select()
-    .where('username', username)
+    .whereRaw('LOWER(username) LIKE ?', username.toLowerCase())
     .first()
 }
 
 function userExists (username, db = connection) {
   return db('creds')
-    .count('id as n')
-    .where('username', username)
-    .then(count => {
-      return count[0].n > 0
-    })
+    .whereRaw('LOWER(username) LIKE ?', username.toLowerCase())
+    .first()
+    .then(user => !!user)
 }
 
 function createUser (username, name, password, db = connection) {
