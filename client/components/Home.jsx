@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import OrderList from './OrderList'
 import AddToOrder from './AddToOrder'
+import CompleteButton from './CompleteButton'
 import {
   requestCurrentOrder,
   requestUsers,
@@ -36,9 +37,7 @@ class Home extends React.Component {
       <div className='order-container'>
         <h2>Current Order</h2>
         <OrderList orders={orders} onClickFn={this.deleteItem} />
-        <div className="completed">
-          <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
-        </div>
+        <CompleteButton markComplete={this.markComplete} />
         {this.props.isAuth && (<AddToOrder />)}
       </div>
     )
