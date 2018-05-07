@@ -1,10 +1,16 @@
 import React from 'react'
 
-const Order = ({name, order}) => (
+/**
+ * Outputs a person's ordered drink for an order
+ * If onClickFn is defined it will be called when the delete button is pressed
+ *
+ * @param {{id, name, order, onClickFn}} props
+ */
+const Order = ({id, name, order, onClickFn}) => (
   <tr>
     <td>{name}</td>
     <td>{order}</td>
-    <td onClick={null/* Add extra column for delete based on props.onClickFn */}><button>X</button></td>
+    <td onClick={() => onClickFn(id)}><button>X</button></td>
   </tr>
 )
 
