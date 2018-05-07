@@ -29,7 +29,7 @@ class Register extends React.Component {
           // TODO Move to separate module at later stage
           localStorage.setItem('token', token)
         })
-        .then(() => getUser())
+        .then(getUser)
         .then(user => this.props.loginUser(user))
         .then(() => this.props.history.push('/profile'))
     }

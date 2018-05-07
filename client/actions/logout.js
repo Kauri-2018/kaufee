@@ -5,8 +5,6 @@ export const LOGOUT = 'LOGOUT'
 export function logout () {
   set('token', null)
   return {
-    type: LOGOUT,
-    isAuthenticated: false,
-    user: null
+    type: LOGOUT
   }
 }
