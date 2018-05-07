@@ -9,7 +9,7 @@ const NavBar = ({isAuth, user}) => {
       <Link to="/history"><button>History</button></Link>
       {isAuth
         ? ([
-          <Link key='profile' to="/profile"><button>{user.username}</button></Link>,
+          <Link key='profile' to="/profile"><button>{user.name}</button></Link>,
           <Link key='logout' to="/"><button>Logout</button></Link>
         ])
         : ([
