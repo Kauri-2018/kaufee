@@ -11,7 +11,8 @@ function requestLogout () {
 
 function receiveLogout () {
   return {
-    type: LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS,
+    isAuthenticated: false
   }
 }
 export function logoutUser () {
