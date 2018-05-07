@@ -3,6 +3,7 @@ import {
   getUsers,
   addOrderItem,
   orderIsComplete,
+  deleteItem,
   addOrder
 } from '../apiClient'
 
@@ -13,7 +14,22 @@ export const SHOW_ERROR = 'SHOW_ERROR'
 export function showError (errorMessage) {
   return {
     type: SHOW_ERROR,
-    errorMessage: errorMessage
+    errorMessage
+  }
+}
+
+export function deleteItemById (id) {
+  return dispatch => {
+    return deleteItem(id)
+      .then(() => {
+        return getCurrentOrder()
+          .then(currentOrder => {
+            dispatch(showCurrentOrder(currentOrder))
+          })
+      })
+      .catch(err => {
+        dispatch(showError(err.message))
+      })
   }
 }
 
