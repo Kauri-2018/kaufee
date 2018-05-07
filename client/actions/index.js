@@ -67,7 +67,7 @@ export function orderComplete (orderId) {
   }
 }
 
-export function createNewOrder (state) {
+export function createNewOrder ({isCurrentOrderActive}) {
   return dispatch => {
     return addOrder()
       .then(currentOrder => {

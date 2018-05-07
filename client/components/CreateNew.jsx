@@ -6,15 +6,15 @@ import {createNewOrder} from '../actions'
 class CreateNew extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      isCurrentOrderActive: this.props.isCurrentOrderActive
-    }
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick (e) {
     e.preventDefault()
     this.props.dispatch(createNewOrder(this.props.state))
+    this.setState({
+      isCurrentOrderActive: true
+    })
   }
 
   render () {
@@ -28,7 +28,7 @@ class CreateNew extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isCurrentOrderActive: true
+    isCurrentOrderActive: state.currentOrder.isCurrentOrderActive
   }
 }
 
