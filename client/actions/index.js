@@ -67,11 +67,11 @@ export function orderComplete (orderId) {
   }
 }
 
-export function createNew (state) {
+export function createNewOrder (state) {
   return dispatch => {
     return addOrder()
-    // .then(() => {
-    //   dispatch()
-    // })
+      .then(res => {
+        dispatch(showCurrentOrder(res))
+      })
   }
 }
