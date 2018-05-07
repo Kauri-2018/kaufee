@@ -1,6 +1,7 @@
 const express = require('express')
 
 const db = require('../db/users')
+const token = require('../auth/token')
 
 const router = express.Router()
 
@@ -10,8 +11,8 @@ module.exports = router
 
 // profile get route
 
-router.get('/', (req, res) => {
-  const id = req.params.id
+router.get('/', token.decode, (req, res) => {
+  const id = req.user.id
   db.getUser(id)
     .then(user => {
       res.json(user)
