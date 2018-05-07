@@ -13,8 +13,11 @@ const testTable = order => (
   </table>
 )
 
-test('<Order /> onClickFn is called on button click', () => {
-  const trueFn = () => { expect(true).toBeTruthy() }
+test('<Order /> onClickFn is called on button click', done => {
+  const trueFn = () => {
+    expect(true).toBeTruthy()
+    done()
+  }
 
   const order = {
     id: 2,
