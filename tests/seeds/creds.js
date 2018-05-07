@@ -1,4 +1,4 @@
-import {generate} from '../../server/auth/hash'
+const {generate} = require('../../server/auth/hash')
 
 exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
