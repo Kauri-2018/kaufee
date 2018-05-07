@@ -6,7 +6,8 @@ const orders = require('./orders')
 const users = require('./users')
 
 module.exports = {
-  addToOrder
+  addToOrder,
+  deleteOrderItem
 }
 
 function addToOrder (userId, orderId, conn = connection) {
@@ -29,4 +30,10 @@ function addToOrder (userId, orderId, conn = connection) {
             })
         })
     })
+}
+
+function deleteOrderItem (itemId, conn = connection) {
+  return conn('order_items')
+    .where('id', '=', itemId)
+    .del()
 }
