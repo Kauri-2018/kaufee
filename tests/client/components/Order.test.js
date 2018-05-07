@@ -14,7 +14,7 @@ const testTable = order => (
 )
 
 test('<Order /> onClickFn is called on button click', done => {
-  const trueFn = () => {
+  const testFn = () => {
     expect(true).toBeTruthy()
     done()
   }
@@ -24,7 +24,7 @@ test('<Order /> onClickFn is called on button click', done => {
     name: 'Kale',
     order: 'flat white',
     isComplete: false,
-    onClickFn: trueFn
+    onClickFn: testFn
   }
 
   const wrapper = mount(testTable(order))
