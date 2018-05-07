@@ -3,10 +3,8 @@ import nock from 'nock'
 import {registerUser} from '../../../client/apiClient'
 
 const userDetails = {
-  id: 1,
-  name: 'Janie',
-  email: 'janie@test.com',
-  token: 'this is the token'
+  "message": "Authentication successful.",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJkb24iLCJpYXQiOjE1MjU2NjQ4NTgsImV4cCI6MTUyNTc1MTI1OH0.ofOMvjwHAEkbAnMK7NC2xG3RneUlGGeTE52OC-Di06w"
 }
 
 nock('http://localhost')
@@ -14,8 +12,9 @@ nock('http://localhost')
   .reply(200, userDetails)
 
 test('registerUsers sends post request to server', () => {
+  const expected = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJkb24iLCJpYXQiOjE1MjU2NjQ4NTgsImV4cCI6MTUyNTc1MTI1OH0.ofOMvjwHAEkbAnMK7NC2xG3RneUlGGeTE52OC-Di06w'
   return registerUser(userDetails)
     .then(res => {
-      expect(res).toContain('this is the token')
+      expect(res).toContain(expected)
     })
 })
