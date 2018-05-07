@@ -16,6 +16,12 @@ function issue (req, res) {
         token
       })
     })
+    .catch(err => {
+      return res.status(403).json({
+        message: 'Authentication failed',
+        info: err.message
+      })
+    })
 }
 
 function createToken (user, secret) {

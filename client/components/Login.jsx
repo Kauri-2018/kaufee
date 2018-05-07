@@ -31,8 +31,8 @@ class Login extends React.Component {
       <div className ='login'>
         <h2>Login</h2>
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
-        <div><ErrorMessage reducer='auth'/></div>
         <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>
+        <div><ErrorMessage reducer='auth'/></div>
         <button onClick={this.attemptUserLogin}>Log in</button>
       </div>
     )

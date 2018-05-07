@@ -1,5 +1,6 @@
 import React from 'react'
 import {registerUser} from '../apiClient'
+import ErrorMessage from './ErrorMessage'
 
 class Register extends React.Component {
   constructor (props) {
@@ -36,6 +37,7 @@ class Register extends React.Component {
         <div><input type='text' name='name' placeholder='First Name' onChange={this.handleChange}/></div>
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
         <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>
+        <div><ErrorMessage reducer='auth'/></div>
         <button onClick={this.submitNewUser}>Register</button>
       </div>
     )
