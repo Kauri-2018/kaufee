@@ -42,3 +42,7 @@ export function orderIsComplete (orderId) {
   return request.put('/api/v1/current-order/is-complete')
     .send(data)
 }
+
+export function addOrder () {
+  return request.put('/api/v1/current-order/new-order')
+}

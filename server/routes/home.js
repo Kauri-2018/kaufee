@@ -54,3 +54,13 @@ router.put('/is-complete', (req, res) => {
       res.status(500).send(err.message)
     })
 })
+
+router.put('/new-order', (req, res) => {
+  db.addNewOrder()
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
+})

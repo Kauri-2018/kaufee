@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {createNew} from '../actions'
+
 class CreateNew extends React.Component {
   constructor (props) {
     super(props)
@@ -11,10 +13,8 @@ class CreateNew extends React.Component {
   }
 
   handleClick (e) {
-    const isActive = e.target.isCurrentOrderActive
-    this.setState({
-      isCurrentOrderActive: isActive
-    })
+    e.preventDefault()
+    this.props.dispatch(createNew(this.props.state))
   }
 
   render () {

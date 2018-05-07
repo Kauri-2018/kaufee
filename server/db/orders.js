@@ -7,7 +7,8 @@ module.exports = {
   getOrders,
   getUsers,
   orderExists,
-  markCompleted
+  markCompleted,
+  addNewOrder
 }
 
 function getCurrentOrder (conn = connection) {
@@ -43,4 +44,12 @@ function markCompleted (orderId, conn = connection) {
   return conn('orders')
     .where('id', '=', orderId)
     .update({is_complete: true})
+}
+
+function addNewOrder (conn = connection) {
+  return conn('orders')
+    .insert({
+      is_complete: false,
+      owner_id: 1
+    })
 }
