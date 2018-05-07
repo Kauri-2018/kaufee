@@ -36,9 +36,11 @@ class Home extends React.Component {
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        <OrderList orders={orders} onClickFn={this.deleteItem} />
-        <CompleteButton markComplete={this.markComplete} />
-        {this.props.isAuth && (<AddToOrder />)}
+        {this.props.isAuth
+          ? <OrderList orders={orders} onClickFn={this.deleteItem} />
+          : <OrderList orders={orders} />}
+        {this.props.isAuth && <CompleteButton markComplete={this.markComplete} />}
+        {this.props.isAuth && <AddToOrder />}
       </div>
     )
   }

@@ -7,7 +7,12 @@
 }
 
 .even-spacing {
-  justify-content: space-around
+  justify-content: space-around;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar > Link > button {
