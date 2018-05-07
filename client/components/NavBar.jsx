@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logoutUser} from '../actions/logout'
+import {logout} from '../actions/logout'
 
 const NavBar = ({isAuth, user, handleLogout}) => {
   return (
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleLogout: () => dispatch(logoutUser())
+    handleLogout: () => dispatch(logout())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
