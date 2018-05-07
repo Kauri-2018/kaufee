@@ -1,6 +1,6 @@
 const express = require('express')
 
-const db = require('../db/user')
+const db = require('../db/users')
 
 const router = express.Router()
 
@@ -10,16 +10,14 @@ module.exports = router
 
 // profile get route
 
-/*
 router.get('/', (req, res) => {
-  db.getProfile()
-    .then(() => {
-      res.json()
+  db.getUser()
+    .then((user) => {
+      res.json(user)
     })
     .catch(err => {
       res.status(500).send(err.message)
     })
 })
-*/
 
 // profile post route
