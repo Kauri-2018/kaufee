@@ -17,5 +17,14 @@ jest.mock('../../../server/db/users', () => ({
 const server = require('../../../server/server')
 
 // get route test
+test('get /api/v1/profile returns user profile', () => {
+
+  // Arrange
+
+  // Act
+
+  // Assert
+
+})
 
 // put route test
