@@ -6,14 +6,14 @@ const {generate} = require('../auth/hash')
 function getCredsByName (username, db = connection) {
   return db('creds')
     .select()
-    .where('username', username)
+    .where('username', username.toLowerCase())
     .first()
 }
 
 function userExists (username, db = connection) {
   return db('creds')
     .count('id as n')
-    .where('username', username)
+    .where('username', username.toLowerCase())
     .then(count => {
       return count[0].n > 0
     })
@@ -53,4 +53,3 @@ module.exports = {
   createUser,
   getUser
 }
-
