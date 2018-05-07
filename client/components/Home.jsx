@@ -40,12 +40,9 @@ class Home extends React.Component {
         <div className="completed">
           <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
         </div>
-<<<<<<< HEAD
         <AddToOrder />
-        <CreateNew isActive={this.props.isCurrentOrderActive} />
-=======
+        <CreateNew />
         {this.props.isAuth && (<AddToOrder />)}
->>>>>>> a5f19086432b09533462a8aae0adf517e12d929c
       </div>
     )
   }
