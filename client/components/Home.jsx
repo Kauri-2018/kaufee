@@ -36,14 +36,22 @@ class Home extends React.Component {
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        {this.props.isAuth
-          ? <OrderList orders={orders} onClickFn={this.deleteItem} />
-          : <OrderList orders={orders} />}
-        {this.props.isAuth && <CompleteButton markComplete={this.markComplete} />}
-        {this.props.isAuth && <AddToOrder />}
+        {!this.props.isAuth
+          ? renderAuthComponents(orders)
+          : <OrderList key='orderlist' orders={orders} />}
       </div>
     )
   }
+}
+
+const renderAuthComponents = (orders, orderIsComplete) => {
+  if (orderIsComplete) {
+    return [<OrderList key='orderlist' orders={orders} onClickFn={this.deleteItem} />,
+      <AddToOrder key='addtoorder'/>]
+  }
+  return [<OrderList key='orderlist' orders={orders} onClickFn={this.deleteItem} />,
+    <CompleteButton key='completebutton' markComplete={this.markComplete} />,
+    <AddToOrder key='addtoorder'/>]
 }
 
 const mapStateToProps = (state) => {
