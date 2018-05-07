@@ -48,7 +48,7 @@ function getUser (userId, conn = connection) {
     .first()
 }
 
-function getUserByCredsId (credsId, conn = connection) {
+function getUserByCredId (credsId, conn = connection) {
   return conn('users')
     .where('cred_id', '=', credsId)
     .select(
@@ -61,7 +61,7 @@ function getUserByCredsId (credsId, conn = connection) {
 }
 module.exports = {
   getCredsByName,
-  getUserByCredsId,
+  getUserByCredId,
   userExists,
   createUser,
   getUser

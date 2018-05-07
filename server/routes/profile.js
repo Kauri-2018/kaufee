@@ -11,7 +11,7 @@ module.exports = router
 
 router.get('/', token.decode, (req, res) => {
   // token.decode -- now req.user will contain the contents of our token
-  db.getUserByCredsId(req.user.id)
+  db.getUserByCredId(req.user.id)
     .then(credsId => res.json(credsId))
     .catch(err => {
       res.status(500).send(err.message)
