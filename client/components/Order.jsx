@@ -3,6 +3,7 @@ import React from 'react'
 /**
  * Outputs a person's ordered drink for an order
  * If onClickFn is defined it will be called when the delete button is pressed
+ * If no onClickFn is given then the delete button will not show
  *
  * @param {{id, name, order, isComplete, onClickFn}} props
  */
