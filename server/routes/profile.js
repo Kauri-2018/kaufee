@@ -9,11 +9,9 @@ router.use(express.json())
 
 module.exports = router
 
-// profile get route
-
 router.get('/', token.decode, (req, res) => {
-  const id = req.user.id
-  db.getUser(id)
+  // token.decode -- now req.user will contain the contents of our token
+  db.getUser(req.user.id)
     .then(user => {
       res.json(user)
     })
