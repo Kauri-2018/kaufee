@@ -6,8 +6,8 @@ import React from 'react'
  *
  * @param {{id, name, order, onClickFn}} props
  */
-const Order = ({id, name, order, onClickFn}) => (
-  <tr>
+const Order = ({id, name, order, isComplete, onClickFn}) => (
+  <tr className={isComplete && 'completed'}>
     <td>{name}</td>
     <td>{order}</td>
     {onClickFn && (<td onClick={() => onClickFn(id)}><button>X</button></td>)}

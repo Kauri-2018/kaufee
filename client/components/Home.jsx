@@ -35,7 +35,10 @@ class Home extends React.Component {
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        <OrderList items={items} onClickFn={this.deleteItem} />
+        <OrderList
+          items={items}
+          functionMessage='Delete Item'
+          onClickFn={this.deleteItem} />
         <div className="completed">
           <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
         </div>

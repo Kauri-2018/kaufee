@@ -13,3 +13,7 @@
 .navbar > Link > button {
   width: 4em;
 }
+
+.completed > td > button {
+  background-color: red;
+}
