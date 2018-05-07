@@ -60,3 +60,9 @@ export function orderComplete (orderId) {
       })
   }
 }
+
+export function startNewOrder () {
+  return dispatch => {
+    return 
+  }
+}

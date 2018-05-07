@@ -1,17 +1,19 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 class CreateNew extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      list: this.props
+      isCurrentOrderActive: this.props.isCurrentOrderActive
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick (e) {
+    const isActive = e.target.isCurrentOrderActive
     this.setState({
-      list: {}
+      isCurrentOrderActive: isActive
     })
   }
 
@@ -26,8 +28,8 @@ class CreateNew extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // return a thing
+    isCurrentOrderActive: false
   }
 }
 
-export default CreateNew
+export default connect(mapStateToProps)(CreateNew)
