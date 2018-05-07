@@ -32,24 +32,24 @@ class Home extends React.Component {
   }
 
   render () {
-    const orders = this.props.orders || []
+    const items = this.props.items || []
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        {!this.props.isAuth
-          ? renderAuthComponents(orders)
-          : <OrderList key='orderlist' orders={orders} />}
+        {this.props.isAuth
+          ? renderAuthComponents(items)
+          : <OrderList key='orderlist' items={items} />}
       </div>
     )
   }
 }
 
-const renderAuthComponents = (orders, orderIsComplete) => {
+const renderAuthComponents = (items, orderIsComplete) => {
   if (orderIsComplete) {
-    return [<OrderList key='orderlist' orders={orders} onClickFn={this.deleteItem} />,
+    return [<OrderList key='orderlist' items={items} functionMessage='Delete Item' onClickFn={this.deleteItem} />,
       <AddToOrder key='addtoorder'/>]
   }
-  return [<OrderList key='orderlist' orders={orders} onClickFn={this.deleteItem} />,
+  return [<OrderList key='orderlist' items={items} functionMessage='Delete Item' onClickFn={this.deleteItem} />,
     <CompleteButton key='completebutton' markComplete={this.markComplete} />,
     <AddToOrder key='addtoorder'/>]
 }
@@ -58,7 +58,7 @@ const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuthenticated,
     orderId: state.currentOrder.id,
-    orders: state.currentOrder.items
+    items: state.currentOrder.items
   }
 }
 

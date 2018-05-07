@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {logout} from '../actions/logout'
 
-const NavBar = ({isAuth, user}) => (
+const NavBar = ({isAuth, user, handleLogout}) => (
   <div className="navbar">
     <div className="nav-elements" >
       <Link to="/"><button>Home</button></Link>
@@ -11,7 +12,7 @@ const NavBar = ({isAuth, user}) => (
     {isAuth
       ? <div className="auth-elements" >
         <Link key='profile' to="/profile"><button>{user.name}</button></Link>
-        <Link key='logout' to="/"><button>Logout</button></Link>
+        <Link key='logout' onClick={handleLogout} to="/"><button>Logout</button></Link>
       </div>
       : <div className="auth-elements" >
         <Link key='register' to="/register"><button>Register</button></Link>
@@ -27,4 +28,10 @@ const mapStateToProps = (state) => {
     user: state.auth.user || {}
   }
 }
-export default connect(mapStateToProps)(NavBar)
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleLogout: () => dispatch(logout())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
