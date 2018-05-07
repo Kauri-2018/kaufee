@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Moment from 'react-moment'
 
 import {requestAllOrders} from '../actions'
 import ListPastOrders from './ListPastOrders'
@@ -15,14 +16,16 @@ class PastOrders extends React.Component {
   }
 
   render () {
-    const orders = this.props.orders || []
+   
+    this.props.allOrders.date = Moment(this.props.allOrders.date).format()
+    const orders = this.props.allOrders || []
     return (
       <div className='order-container'>
-        {/* {orders.map(order =>
+        {orders.map(order =>
           <ListPastOrders key={order.id}
             {...order}
           />
-        )} */}
+        )}
       </div>
     )
   }
@@ -30,7 +33,7 @@ class PastOrders extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    orders: state.allOrders
+    allOrders: state.allOrders
   }
 }
 

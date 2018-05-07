@@ -93,9 +93,9 @@ router.put('/is-complete', token.decode, (req, res) => {
 })
 
 router.get('/history', (req, res) => {
-  db.getAllOrders()
-    .then(res => {
-      res.json(res)
+  db.getOrders()
+    .then(allOrders => {
+      res.json(allOrders)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

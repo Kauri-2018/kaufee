@@ -7,8 +7,7 @@ module.exports = {
   getOrders,
   getUsers,
   orderExists,
-  markCompleted,
-  getAllOrders
+  markCompleted
 }
 
 function getCurrentOrder (conn = connection) {
@@ -44,9 +43,4 @@ function markCompleted (orderId, conn = connection) {
   return conn('orders')
     .where('id', '=', orderId)
     .update({is_complete: true})
-}
-
-function getAllOrders (conn = connection) {
-  return conn('orders')
-    .select()
 }
