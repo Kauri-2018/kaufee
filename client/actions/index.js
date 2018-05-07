@@ -1,4 +1,4 @@
-import {getCurrentOrder, getUsers, addOrderItem, orderIsComplete} from '../apiClient'
+import {getCurrentOrder, getUsers, addOrderItem, orderIsComplete, deleteItem} from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'
@@ -8,6 +8,18 @@ export function showError (errorMessage) {
   return {
     type: SHOW_ERROR,
     errorMessage: errorMessage
+  }
+}
+
+export function deleteItemById (id) {
+  return dispatch => {
+    return deleteItem()
+      .then(() => {
+        return getCurrentOrder()
+          .then(currentOrder => {
+            dispatch(showCurrentOrder(currentOrder))
+          })
+      })
   }
 }
 

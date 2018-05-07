@@ -3,7 +3,12 @@ import {connect} from 'react-redux'
 
 import OrderList from './OrderList'
 import AddToOrder from './AddToOrder'
-import {requestCurrentOrder, requestUsers, orderComplete} from '../actions'
+import {
+  requestCurrentOrder,
+  requestUsers,
+  orderComplete,
+  deleteItemById
+} from '../actions'
 
 class Home extends React.Component {
   constructor (props) {
@@ -22,7 +27,7 @@ class Home extends React.Component {
   }
 
   deleteItem (id) {
-    console.log(id)
+    this.props.dispatch(deleteItemById(id))
   }
 
   render () {
