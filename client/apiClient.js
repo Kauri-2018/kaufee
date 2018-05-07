@@ -29,6 +29,10 @@ export function addOrderItem (userId, orderId) {
     .send(data)
 }
 
+export function deleteItem (userItemId) {
+  return request.delete(`/api/v1/current-order/${userItemId}`)
+}
+
 export function loginUser (userDetails) {
   return request.post('/api/v1/auth/login')
     .send(userDetails)

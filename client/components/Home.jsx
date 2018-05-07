@@ -17,13 +17,13 @@ class Home extends React.Component {
     this.deleteItem = this.deleteItem.bind(this)
   }
 
-  markComplete () {
-    this.props.dispatch(orderComplete(this.props.orderId))
-  }
-
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
+  }
+
+  markComplete () {
+    this.props.dispatch(orderComplete(this.props.orderId))
   }
 
   deleteItem (id) {
