@@ -18,7 +18,7 @@ const NavBar = ({isAuth, user}) => {
           <Link to="/">Home</Link> |
           <Link to="/history">History</Link> |
           <Link to="/profile">{user.username}</Link> |
-          <Link to="">Logout</Link>
+          <Link to="/">Logout</Link>
         </div>
       )}
     </div>

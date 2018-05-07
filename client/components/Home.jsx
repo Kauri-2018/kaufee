@@ -29,7 +29,7 @@ class Home extends React.Component {
         <div className="completed">
           <button onClick={this.markComplete}>Mark as Complete</button>
         </div>
-        <AddToOrder />
+        {this.props.isAuth && (<AddToOrder />)}
       </div>
     )
   }
@@ -37,6 +37,7 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    isAuth: state.auth.isAuthenticated,
     orderId: state.currentOrder.id,
     orders: state.currentOrder.items
   }
