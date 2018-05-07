@@ -22,10 +22,8 @@ class Register extends React.Component {
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
-        .then(token => {
-          // TODO Move to separate module at later stage
-          localStorage.setItem('token', token)
-          this.props.history.push('/profile')
+        .then(() => {
+          this.props.history.push('/login')
         })
     }
   }

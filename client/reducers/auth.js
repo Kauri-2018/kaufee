@@ -38,7 +38,8 @@ export default function (state = initState, action) {
       return {
         ...state,
         isFetching: false,
-        isAuthenticated: action.isAuthenticated
+        isAuthenticated: action.isAuthenticated,
+        user: action.user
       }
     default:
       return state
