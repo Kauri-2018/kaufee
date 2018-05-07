@@ -5,8 +5,7 @@ const db = require('../db/users')
 
 module.exports = {
   issue,
-  decode,
-
+  decode
 }
 
 function issue (req, res) {
