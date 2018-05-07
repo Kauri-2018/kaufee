@@ -3,7 +3,7 @@ import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/login'
 const initState = {
   isFetching: false,
   isAuthenticated: false,
-  errorMessage: ''
+  errorMessage: 'hai'
 }
 
 export default function (state = initState, action) {
