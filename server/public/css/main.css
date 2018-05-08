@@ -1,0 +1,49 @@
+.flex .flex-horizontal .flex-vertical {
+  display: flex;
+}
+
+.flex-vertical {
+  flex-direction: column;
+}
+
+.even-spacing {
+  justify-content: space-around;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar > div > a > button {
+  min-width: 10em;
+}
+
+.completed > td {
+  color: green;
+}
+
+.not-completed > td {
+  color: red;
+}
+
+button.completed {
+  background-color: cadetblue;
+}
+
+.row {
+  width: 100%;
+}
+
+.button-complete-fn {
+  margin: -1em;
+}
+
+.button-complete-fn-col {
+  width: 8em;
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
