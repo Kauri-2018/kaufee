@@ -33,10 +33,11 @@ class Profile extends React.Component {
   }
 
   render () {
+    const {name, orderText} = this.props.user
     return (
       <div className='user-profile'>
-        <h2>Name: {this.props.isAuth && this.props.user.name}</h2>
-        <h3>Current order: {this.props.isAuth && this.props.user.orderText}</h3>
+        <h2>Name: {name}</h2>
+        <h3>Current order: {orderText}</h3>
         <div className='change-order'>
           <form onSubmit={this.handleUpdate}>
             <h5>Change your order below</h5>
@@ -52,7 +53,7 @@ class Profile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuthenticated,
-    user: state.auth.user
+    user: state.auth.user || {}
   }
 }
 
