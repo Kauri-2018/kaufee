@@ -5,6 +5,9 @@ import OrderList from './OrderList'
 import AddToOrder from './AddToOrder'
 import CreateNew from './CreateNew'
 import CompleteButton from './CompleteButton'
+import {get} from '../utils/localStorage'
+import {receiveLogin} from '../actions/login'
+import {getUser} from '../apiClient'
 import {
   requestCurrentOrder,
   requestUsers,
@@ -19,15 +22,27 @@ class Home extends React.Component {
     this.deleteItem = this.deleteItem.bind(this)
     this.renderActiveOrder = this.renderActiveOrder.bind(this)
     this.renderInactiveOrder = this.renderInactiveOrder.bind(this)
+    this.hasAuth = this.hasAuth.bind(this)
   }
 
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
+    this.hasAuth()
   }
 
   markComplete () {
     this.props.dispatch(orderComplete(this.props.orderId))
+  }
+
+  hasAuth () {
+    const token = get('token')
+    if (token) {
+      getUser()
+        .then(user => {
+          this.props.dispatch(receiveLogin(user))
+        })
+    }
   }
 
   deleteItem (id) {
@@ -51,7 +66,7 @@ class Home extends React.Component {
       return ([
         <OrderList key='order-list' items={items} onClickFn={this.deleteItem} />,
         <AddToOrder key='add-to-order' />,
-        <CompleteButton key='complete-button' />
+        <CompleteButton key='complete-button' markComplete={this.markComplete} />
       ])
     }
     return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import {HashRouter as Router, Route} from 'react-router-dom'
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 
 import Home from './Home'
 import Register from './Register'
@@ -12,15 +12,23 @@ const App = () => {
   return (
     <Router>
       <div className='app container'>
-        <Route path='/' component={NavBar} />
-        <Route exact path='/' component={Home} />
-        <Route path='/register' component={Register} />
-        <Route path='/login' component={Login} />
-        <Route path='/profile' component={Profile} />
-        <Route path='/barista' component={Barista} />
+        <Switch>
+          <Route path='/barista' component={Barista} />
+          <Route path='/' component={AppPaths} />
+        </Switch>
       </div>
     </Router>
   )
 }
+
+const AppPaths = () => (
+  <div>
+    <Route path='/' component={NavBar} />
+    <Route exact path='/' component={Home} />
+    <Route path='/register' component={Register} />
+    <Route path='/login' component={Login} />
+    <Route path='/profile' component={Profile} />
+  </div>
+)
 
 export default App
