@@ -11,6 +11,7 @@ exports.seed = (knex, Promise) => {
         },
         {
           id: 2,
+          is_complete: false,
           owner_id: 1
         }
       ])

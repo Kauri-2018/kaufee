@@ -1,11 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-
 import {requestAllOrders} from '../actions'
 import ListPastOrders from './ListPastOrders'
 
-class PastOrders extends React.Component {
+class Archive extends React.Component {
   // constructor (props) {
   //   super(props)
 
@@ -16,14 +15,17 @@ class PastOrders extends React.Component {
   }
 
   render () {
-    const orders = this.props.allOrders || []
+    const orders = this.props.allOrders[0] || []
+
     return (
       <div className='order-container'>
+
         {orders.map(order =>
           <ListPastOrders key={order.id}
             {...order}
           />
-        )}
+        ) }
+
       </div>
     )
   }
@@ -35,4 +37,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(PastOrders)
+export default connect(mapStateToProps)(Archive)

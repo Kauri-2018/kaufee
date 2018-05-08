@@ -1,5 +1,7 @@
 const express = require('express')
 
+var _ = require('lodash')
+
 const token = require('../auth/token')
 const userExists = require('../db/users').userExists
 
@@ -95,9 +97,15 @@ router.put('/is-complete', token.decode, (req, res) => {
 router.get('/history', (req, res) => {
   db.getOrders()
     .then(allOrders => {
-      res.json(allOrders)
+      const orders = []
+      const returnedOrders = _.groupBy(allOrders, orders => orders.id)
+      for (let id in returnedOrders) {
+        orders.push(returnedOrders[id])
+      }
+      res.json(orders)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
     })
 })
+

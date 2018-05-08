@@ -6,7 +6,7 @@ import Register from './Register'
 import Login from './Login'
 import Profile from './Profile'
 import NavBar from './NavBar'
-import PastOrders from './PastOrders'
+import Archive from './Archive'
 import Barista from './Barista'
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path='/profile' component={Profile} />
-        <Route path='/history' component={PastOrders} />
+        <Route path='/history' component={Archive} />
         <Route path='/barista' component={Barista} />
       </div>
     </Router>

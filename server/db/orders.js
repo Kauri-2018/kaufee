@@ -24,7 +24,14 @@ function getCurrentOrder (conn = connection) {
 
 function getOrders (conn = connection) {
   return conn('orders')
-    .select()
+    .join('order_items', 'orders.id', '=', 'order_items.order_id')
+    .select(
+      'orders.id',
+      'order_items.user_name',
+      'order_items.order_text',
+      'order_items.id as orderItemsId',
+      'orders.date'
+    )
 }
 
 function getUsers (conn = connection) {

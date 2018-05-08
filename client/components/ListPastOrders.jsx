@@ -13,10 +13,11 @@ function timeConverter (dateCreated) {
 }
 
 const User = (props) => (
-  <p>
+  <div>
   Order ID: {props.id}  Order Date: {timeConverter(props.date)}
-    
-  </p>
+  Order Item: {props.order_text}   Order Item: {props.user_name}
+    <hr/>
+  </div>
 )
 
 export default User
