@@ -15,4 +15,8 @@ server.use('/api/v1/current-order', homeRoutes)
 server.use('/api/v1/users', userRoutes)
 server.use('/api/v1/profile', profileRoutes)
 
+server.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'))
+})
+
 module.exports = server
