@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {requestNewOrder, startNewOrder} from '../actions'
+import {requestCurrentOrder} from '../actions'
+import {addOrder} from '../apiClient'
 
 class CreateNew extends React.Component {
   constructor (props) {
@@ -10,8 +11,10 @@ class CreateNew extends React.Component {
   }
 
   handleClick () {
-    const user = this.props.dispatch(requestNewOrder())
-    this.props.dispatch(startNewOrder(user))
+    addOrder()
+      .then(() => {
+        this.props.dispatch(requestCurrentOrder())
+      })
   }
 
   render () {

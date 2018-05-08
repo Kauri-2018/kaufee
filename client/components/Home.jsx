@@ -32,11 +32,14 @@ class Home extends React.Component {
   }
 
   render () {
-    const orders = this.props.orders || []
+    const items = this.props.items || []
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        <OrderList orders={orders} onClickFn={this.deleteItem} />
+        <OrderList
+          items={items}
+          functionMessage='Delete Item'
+          onClickFn={this.deleteItem} />
         <div className="completed">
           <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
         </div>
@@ -52,8 +55,7 @@ const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuthenticated,
     orderId: state.currentOrder.id,
-    orders: state.currentOrder.items,
-    isCurrentOrderActive: state.currentOrder.isCurrentOrderActive
+    items: state.currentOrder.items
   }
 }
 

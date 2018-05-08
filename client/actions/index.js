@@ -39,6 +39,7 @@ export function requestCurrentOrder () {
     return getCurrentOrder()
       .then(currentOrder => {
         dispatch(showCurrentOrder(currentOrder))
+        return currentOrder
       })
   }
 }
@@ -84,22 +85,16 @@ export function orderComplete (orderId) {
   }
 }
 
-export function requestNewOrder () {
-  return dispatch => {
-    return addOrder()
-      .then(() => {
-        dispatch(getUser())
-          .then(user => {
-            return user
-          })
-      })
-  }
-}
+// export function requestNewOrder () {
+//   return dispatch => {
+//     return addOrder()
+//   }
+// }
 
-export function startNewOrder (user) {
-  return dispatch => {
-    const userId = user.id
-    const orderId = 51
-    return updateOrder(userId, orderId)
-  }
-}
+// export function startNewOrder (user) {
+//   return dispatch => {
+//     const userId = user.id
+//     const orderId = 51
+//     return updateOrder(userId, orderId)
+//   }
+// }
