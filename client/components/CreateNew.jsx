@@ -11,7 +11,7 @@ class CreateNew extends React.Component {
   }
 
   handleClick () {
-    addOrder()
+    addOrder(this.props.userId)
       .then(() => {
         this.props.dispatch(requestCurrentOrder())
       })
@@ -26,4 +26,10 @@ class CreateNew extends React.Component {
   }
 }
 
-export default connect()(CreateNew)
+function mapStateToProps (state) {
+  return {
+    userId: state.auth.user.userId
+  }
+}
+
+export default connect(mapStateToProps)(CreateNew)

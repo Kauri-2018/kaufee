@@ -64,7 +64,7 @@ function addToOrder (userId, orderId, conn = connection) {
       }
     })
     .then(() => {
-      return users.getUserByCredId(userId, conn)
+      return users.getUser(userId, conn)
         .then(user => {
           if (!user) {
             throw new Error('User does not exist.')

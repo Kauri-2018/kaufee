@@ -72,8 +72,9 @@ export function orderIsComplete (orderId) {
     .send(data)
 }
 
-export function addOrder () {
+export function addOrder (userId) {
   const token = localStorage.getItem('token')
   return request.put('/api/v1/current-order/new-order')
     .set('Authorization', `Bearer ${token}`)
+    .send({userId})
 }

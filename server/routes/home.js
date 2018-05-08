@@ -96,7 +96,7 @@ router.put('/is-complete', token.decode, (req, res) => {
 })
 
 router.put('/new-order', token.decode, (req, res) => {
-  db.addNewOrder(Number(req.user.id))
+  db.addNewOrder(Number(req.body.userId))
     .then(() => {
       res.sendStatus(200)
     })
