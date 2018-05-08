@@ -15,12 +15,8 @@
   justify-content: space-between;
 }
 
-.navbar > Link > button {
-  width: 4em;
-}
-
-.navbar > a > button {
-  width: 12em;
+.navbar > div > a > button {
+  min-width: 10em;
 }
 
 .completed > td {
