@@ -73,7 +73,7 @@ class Home extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuthenticated,
-    isCurrentOrderActive: state.isCurrentOrderActive,
+    isCurrentOrderActive: state.currentOrder.isCurrentOrderActive,
     orderId: state.currentOrder.id,
     items: state.currentOrder.items
   }
