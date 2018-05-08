@@ -16,6 +16,8 @@ class Home extends React.Component {
     super(props)
     this.markComplete = this.markComplete.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
+    this.renderActiveOrder = this.renderActiveOrder.bind(this)
+    this.renderInactiveOrder = this.renderInactiveOrder.bind(this)
   }
 
   componentDidMount () {
@@ -36,28 +38,42 @@ class Home extends React.Component {
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        {this.props.isAuth
-          ? renderAuthComponents(items, this.props.orderIsComplete, this.deleteItem, this.markComplete)
-          : <OrderList key='orderlist' items={items} />}
+        {this.props.isCurrentOrderActive
+          ? this.renderActiveOrder(items)
+          : this.renderInactiveOrder(items)}
       </div>
     )
   }
-}
 
-const renderAuthComponents = (items, orderIsComplete, deleteItem, markComplete) => {
-  if (orderIsComplete) {
-    return [<OrderList key='orderlist' items={items} functionMessage='Delete Item' onClickFn={deleteItem} />,
-      <AddToOrder key='addtoorder'/>]
+  renderActiveOrder (items) {
+    if (this.props.isAuth) {
+      return ([
+        <OrderList key='order-list' items={items} onClickFn={this.deleteItem} />,
+        <AddToOrder key='add-to-order' />,
+        <CompleteButton key='complete-button' />
+      ])
+    }
+    return (
+      <OrderList key='orderlist' items={items} />
+    )
   }
-  return [<OrderList key='orderlist' items={items} functionMessage='Delete Item' onClickFn={deleteItem} />,
-    <CompleteButton key='completebutton' markComplete={markComplete} />,
-    <AddToOrder key='addtoorder'/>]
+
+  renderInactiveOrder (items) {
+    if (this.props.isAuth) {
+      return (
+        <p style='color: red'>MAKE NEW ORDER BUTTON GOES HERE</p>
+      )
+    }
+    return (
+      <p>No current orders. Please log in to create a new order.</p>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuthenticated,
-    orderIsCompleted: state.currentOrder.id === 0,
+    isCurrentOrderActive: state.isCurrentOrderActive,
     orderId: state.currentOrder.id,
     items: state.currentOrder.items
   }
