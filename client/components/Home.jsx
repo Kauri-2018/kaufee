@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 import OrderList from './OrderList'
 import AddToOrder from './AddToOrder'
 import CompleteButton from './CompleteButton'
+import {get} from '../utils/localStorage'
+import {receiveLogin} from '../actions/login'
+import {getUser} from '../apiClient'
 import {
   requestCurrentOrder,
   requestUsers,
@@ -18,15 +21,27 @@ class Home extends React.Component {
     this.deleteItem = this.deleteItem.bind(this)
     this.renderActiveOrder = this.renderActiveOrder.bind(this)
     this.renderInactiveOrder = this.renderInactiveOrder.bind(this)
+    this.hasAuth = this.hasAuth.bind(this)
   }
 
   componentDidMount () {
     this.props.dispatch(requestCurrentOrder())
     this.props.dispatch(requestUsers())
+    this.hasAuth()
   }
 
   markComplete () {
     this.props.dispatch(orderComplete(this.props.orderId))
+  }
+
+  hasAuth () {
+    const token = get('token')
+    if (token) {
+      getUser()
+        .then(user => {
+          this.props.dispatch(receiveLogin(user))
+        })
+    }
   }
 
   deleteItem (id) {
