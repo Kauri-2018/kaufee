@@ -19,12 +19,9 @@ router.get('/', token.decode, (req, res) => {
 })
 
 router.put('/', token.decode, (req, res) => {
-  const userId = req.user.id
-  const orderText = req.body.orderText
-  db.updateUser(userId, orderText)
-    .then(response => {
-      res.json(response.body)
-    })
+  db.updateUser(req.body)
+    .then(() => db.getUser(req.body.userId))
+    .then((user) => res.json(user))
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
     })

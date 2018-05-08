@@ -1,13 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getUser, updateUserProfile} from '../apiClient'
+import {updateUserProfile} from '../apiClient'
+import {updateUser} from '../actions/index'
 
 class Profile extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       userId: 0,
+      credId: 0,
       name: '',
       orderText: ''
     }
@@ -17,17 +19,17 @@ class Profile extends React.Component {
 
   handleChange (e) {
     this.setState({
-      orderText: e.target.value
+      userId: this.props.user.userId,
+      credId: this.props.user.credId,
+      orderText: e.target.value,
+      name: this.props.user.name
     })
   }
 
   handleUpdate (e) {
     e.preventDefault()
-    this.setState({
-      userId: this.props.user.userId,
-      name: this.props.user.name
-    })
-      .then(() => updateUserProfile(this.state))
+    updateUserProfile(this.state)
+      .then((user) => this.props.dispatch(updateUser(user)))
   }
 
   render () {

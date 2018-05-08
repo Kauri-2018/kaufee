@@ -59,10 +59,15 @@ function getUserByCredId (credsId, conn = connection) {
     )
     .first()
 }
-function updateUser (userId, orderText, conn = connection) {
+function updateUser (user, conn = connection) {
   return conn('users')
-    .where('id', '=', userId)
-    .update('order_text', '=', orderText)
+    .where('id', '=', user.userId)
+    .update({
+      'id': user.userId,
+      'cred_id': user.credId,
+      'name': user.name,
+      'order_text': user.orderText
+    })
 }
 
 module.exports = {

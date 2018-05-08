@@ -31,9 +31,12 @@ export function getUser () {
 
 export function updateUserProfile (user) {
   const token = localStorage.getItem('token')
-  return request.post('/api/v1/profile')
+  return request.put('/api/v1/profile')
     .set('Authorization', `Bearer ${token}`)
     .send(user)
+    .then(res => {
+      return res.body
+    })
 }
 
 export function addOrderItem (userId, orderId) {
