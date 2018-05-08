@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function timeConverter (dateCreated) {
   const a = new Date(dateCreated)
@@ -14,9 +15,9 @@ function timeConverter (dateCreated) {
 
 const User = (props) => (
   <div>
-  Order ID: {props.id}  Order Date: {timeConverter(props.date)}
-  Order Item: {props.order_text}   Order Item: {props.user_name}
     <hr/>
+    <Link to={`/history/${props.id}`} >Order ID: {props.id}  Order Date: {timeConverter(props.date)} </Link>
+
   </div>
 )
 

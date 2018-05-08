@@ -15,7 +15,7 @@ class Archive extends React.Component {
   }
 
   render () {
-    const orders = this.props.allOrders[0] || []
+    const orders = this.props.allOrders || []
 
     return (
       <div className='order-container'>

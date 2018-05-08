@@ -30,7 +30,7 @@ class AddToOrder extends React.Component {
     return (
       <div className='addorder'>
         <form onSubmit={this.handleAdd}>
-          <h2>Add Order</h2>
+          <h2>Add a new item to the current order</h2>
           <select onChange={this.handleChange} >
             <option>Select User</option>
             {users.map(user =>

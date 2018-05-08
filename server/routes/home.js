@@ -97,12 +97,12 @@ router.put('/is-complete', token.decode, (req, res) => {
 router.get('/history', (req, res) => {
   db.getOrders()
     .then(allOrders => {
-      const orders = []
-      const returnedOrders = _.groupBy(allOrders, orders => orders.id)
-      for (let id in returnedOrders) {
-        orders.push(returnedOrders[id])
-      }
-      res.json(orders)
+      // const orders = []
+      // const returnedOrders = _.groupBy(allOrders, orders => orders.id)
+      // for (let id in returnedOrders) {
+      //   orders.push(returnedOrders[id])
+      // }
+      res.json(allOrders)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
