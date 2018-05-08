@@ -16,16 +16,20 @@ router.get('/', (req, res) => {
   db.getCurrentOrder()
     .then(items => {
       if (!items.length) {
-        return res.json({isCurrentOrderActive: false})
+        return res.json({
+          id: 0,
+          items: [],
+          isCurrentOrderActive: false
+        })
       }
       const currentOrder = {
         id: items[0].orderId,
         items: items.map(item => ({
           id: item.orderItemId,
           name: item.userName,
-          order: item.orderDetails,
-          isCurrentOrderActive: true
-        }))
+          order: item.orderDetails
+        })),
+        isCurrentOrderActive: true
       }
 
       res.json(currentOrder)
