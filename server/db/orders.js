@@ -39,8 +39,7 @@ function markCompleted (orderId, conn = connection) {
     .update({is_complete: true})
 }
 
-function addNewOrder (conn = connection) {
-  const ownerId = 1
+function addNewOrder (ownerId, conn = connection) {
   return conn('orders')
     .insert({
       is_complete: false,
@@ -65,7 +64,7 @@ function addToOrder (userId, orderId, conn = connection) {
       }
     })
     .then(() => {
-      return users.getUser(userId, conn)
+      return users.getUserByCredId(userId, conn)
         .then(user => {
           if (!user) {
             throw new Error('User does not exist.')
