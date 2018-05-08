@@ -4,7 +4,6 @@ const token = require('../auth/token')
 const userExists = require('../db/users').userExists
 
 const db = require('../db/orders')
-const orderItems = require('../db/orderItems')
 
 const router = express.Router()
 
@@ -13,7 +12,7 @@ router.use(express.json())
 module.exports = router
 
 router.get('/', (req, res) => {
-  db.getCurrentOrder()
+  db.getCurrentOrderItems()
     .then(items => {
       if (!items.length) {
         return res.json({
@@ -46,7 +45,7 @@ router.post('/', token.decode, (req, res) => {
   userExists(req.user.username)
     .then(userExists => {
       if (userExists) {
-        return orderItems.addToOrder(userId, orderId)
+        return db.addToOrder(userId, orderId)
           .then(() => {
             res.sendStatus(200)
           })
@@ -65,7 +64,7 @@ router.delete('/:itemId', token.decode, (req, res) => {
   userExists(req.user.username)
     .then(userExists => {
       if (userExists) {
-        orderItems.deleteOrderItem(itemId)
+        db.deleteOrderItem(itemId)
           .then(() => {
             res.sendStatus(200)
           })
@@ -90,6 +89,16 @@ router.put('/is-complete', token.decode, (req, res) => {
       } else {
         res.status(403).end()
       }
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.put('/new-order', token.decode, (req, res) => {
+  db.addNewOrder(Number(req.user.id))
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

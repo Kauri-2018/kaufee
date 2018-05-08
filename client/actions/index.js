@@ -1,4 +1,10 @@
-import {getCurrentOrder, getUsers, addOrderItem, orderIsComplete, deleteItem} from '../apiClient'
+import {
+  getCurrentOrder,
+  getUsers,
+  addOrderItem,
+  orderIsComplete,
+  deleteItem
+} from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'

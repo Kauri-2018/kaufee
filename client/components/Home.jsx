@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import OrderList from './OrderList'
 import AddToOrder from './AddToOrder'
+import CreateNew from './CreateNew'
 import CompleteButton from './CompleteButton'
 import {get} from '../utils/localStorage'
 import {receiveLogin} from '../actions/login'
@@ -76,7 +77,7 @@ class Home extends React.Component {
   renderInactiveOrder (items) {
     if (this.props.isAuth) {
       return (
-        <p className='error'>MAKE NEW ORDER BUTTON GOES HERE</p>
+        <CreateNew />
       )
     }
     return (
