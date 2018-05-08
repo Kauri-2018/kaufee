@@ -50,7 +50,7 @@ class Home extends React.Component {
       return ([
         <OrderList key='order-list' items={items} onClickFn={this.deleteItem} />,
         <AddToOrder key='add-to-order' />,
-        <CompleteButton key='complete-button' />
+        <CompleteButton key='complete-button' markComplete={this.markComplete} />
       ])
     }
     return (
