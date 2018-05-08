@@ -99,7 +99,7 @@ export function requestNewOrder () {
 export function startNewOrder (user) {
   return dispatch => {
     const userId = user.id
-    const orderId = user.orderId
+    const orderId = 51
     return updateOrder(userId, orderId)
   }
 }
