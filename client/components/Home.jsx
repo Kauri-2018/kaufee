@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import OrderList from './OrderList'
 import AddToOrder from './AddToOrder'
 import CreateNew from './CreateNew'
+import CompleteButton from './CompleteButton'
 import {
   requestCurrentOrder,
   requestUsers,
@@ -16,6 +17,8 @@ class Home extends React.Component {
     super(props)
     this.markComplete = this.markComplete.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
+    this.renderActiveOrder = this.renderActiveOrder.bind(this)
+    this.renderInactiveOrder = this.renderInactiveOrder.bind(this)
   }
 
   componentDidMount () {
@@ -36,17 +39,34 @@ class Home extends React.Component {
     return (
       <div className='order-container'>
         <h2>Current Order</h2>
-        <OrderList
-          items={items}
-          functionMessage='Delete Item'
-          onClickFn={this.deleteItem} />
-        <div className="completed">
-          <button className='button-primary' onClick={this.markComplete}>Mark as Complete</button>
-        </div>
-        <AddToOrder />
-        <CreateNew />
-        {this.props.isAuth && (<AddToOrder />)}
+        {this.props.isCurrentOrderActive
+          ? this.renderActiveOrder(items)
+          : this.renderInactiveOrder(items)}
       </div>
+    )
+  }
+
+  renderActiveOrder (items) {
+    if (this.props.isAuth) {
+      return ([
+        <OrderList key='order-list' items={items} onClickFn={this.deleteItem} />,
+        <AddToOrder key='add-to-order' />,
+        <CompleteButton key='complete-button' />
+      ])
+    }
+    return (
+      <OrderList key='orderlist' items={items} />
+    )
+  }
+
+  renderInactiveOrder (items) {
+    if (this.props.isAuth) {
+      return (
+        <CreateNew />
+      )
+    }
+    return (
+      <p>No current orders. Please log in to create a new order.</p>
     )
   }
 }
@@ -54,6 +74,7 @@ class Home extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuthenticated,
+    isCurrentOrderActive: state.isCurrentOrderActive,
     orderId: state.currentOrder.id,
     items: state.currentOrder.items
   }

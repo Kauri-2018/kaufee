@@ -3,9 +3,7 @@ import {
   getUsers,
   addOrderItem,
   orderIsComplete,
-  deleteItem,
-  addOrder,
-  getUser
+  deleteItem
 } from '../apiClient'
 
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
@@ -84,17 +82,3 @@ export function orderComplete (orderId) {
       })
   }
 }
-
-// export function requestNewOrder () {
-//   return dispatch => {
-//     return addOrder()
-//   }
-// }
-
-// export function startNewOrder (user) {
-//   return dispatch => {
-//     const userId = user.id
-//     const orderId = 51
-//     return updateOrder(userId, orderId)
-//   }
-// }

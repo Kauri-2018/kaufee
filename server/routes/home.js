@@ -4,7 +4,6 @@ const token = require('../auth/token')
 const userExists = require('../db/users').userExists
 
 const db = require('../db/orders')
-const orderItems = require('../db/orderItems')
 
 const router = express.Router()
 
@@ -13,19 +12,23 @@ router.use(express.json())
 module.exports = router
 
 router.get('/', (req, res) => {
-  db.getCurrentOrder()
+  db.getCurrentOrderItems()
     .then(items => {
       if (!items.length) {
-        return res.json({isCurrentOrderActive: false})
+        return res.json({
+          id: 0,
+          items: [],
+          isCurrentOrderActive: false
+        })
       }
       const currentOrder = {
         id: items[0].orderId,
-        isCurrentOrderActive: true,
         items: items.map(item => ({
           id: item.orderItemId,
           name: item.userName,
           order: item.orderDetails
-        }))
+        })),
+        isCurrentOrderActive: true
       }
 
       res.json(currentOrder)
@@ -42,7 +45,7 @@ router.post('/', token.decode, (req, res) => {
   userExists(req.user.username)
     .then(userExists => {
       if (userExists) {
-        return orderItems.addToOrder(userId, orderId)
+        return db.addToOrder(userId, orderId)
           .then(() => {
             res.sendStatus(200)
           })
@@ -61,7 +64,7 @@ router.delete('/:itemId', token.decode, (req, res) => {
   userExists(req.user.username)
     .then(userExists => {
       if (userExists) {
-        orderItems.deleteOrderItem(itemId)
+        db.deleteOrderItem(itemId)
           .then(() => {
             res.sendStatus(200)
           })

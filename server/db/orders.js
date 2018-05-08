@@ -2,16 +2,9 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 
-module.exports = {
-  getCurrentOrder,
-  getOrders,
-  getUsers,
-  orderExists,
-  markCompleted,
-  addNewOrder
-}
+const users = require('./users')
 
-function getCurrentOrder (conn = connection) {
+function getCurrentOrderItems (conn = connection) {
   return conn('orders')
     .join('order_items', 'orders.id', '=', 'order_items.order_id')
     .where('is_complete', '=', false)
@@ -47,9 +40,75 @@ function markCompleted (orderId, conn = connection) {
 }
 
 function addNewOrder (conn = connection) {
+  const ownerId = 1
   return conn('orders')
     .insert({
       is_complete: false,
-      owner_id: 1
+      owner_id: ownerId
     })
+    .then(orderIds => {
+      return conn('orders')
+        .where('id', '=', orderIds[0])
+        .select()
+        .first()
+        .then(order => {
+          addToOrder(ownerId, orderIds[0], conn)
+        })
+    })
+}
+
+function addToOrder (userId, orderId, conn = connection) {
+  return orderExists(orderId, conn)
+    .then(orderExists => {
+      if (!orderExists) {
+        throw new Error('Order does not exist.')
+      }
+    })
+    .then(() => {
+      return users.getUser(userId, conn)
+        .then(user => {
+          if (!user) {
+            throw new Error('User does not exist.')
+          }
+          return conn('order_items')
+            .where({
+              'user_id': userId,
+              'order_id': orderId
+            })
+            .select()
+            .first()
+            .then(existingUser => {
+              if (existingUser) {
+                throw new Error('User already exists in order')
+              }
+              return conn('order_items')
+                .insert({
+                  user_id: user.userId,
+                  user_name: user.name,
+                  order_text: user.orderText,
+                  order_id: orderId
+                })
+            })
+        })
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+}
+
+function deleteOrderItem (itemId, conn = connection) {
+  return conn('order_items')
+    .where('id', '=', itemId)
+    .del()
+}
+
+module.exports = {
+  getCurrentOrderItems,
+  getOrders,
+  getUsers,
+  orderExists,
+  markCompleted,
+  addNewOrder,
+  addToOrder,
+  deleteOrderItem
 }
