@@ -22,9 +22,7 @@ function login (req, res, next) {
       return isValid && next()
     })
     .catch(() => {
-      res.status(400).json({
-        errorType: 'DATABASE_ERROR'
-      })
+      res.status(400).json({message: 'Invalid Username'})
     })
 }
 
@@ -44,9 +42,7 @@ function register (req, res, next) {
 }
 
 function invalidCredentials (res) {
-  res.status(400).json({
-    errorType: 'INVALID_CREDENTIALS'
-  })
+  res.status(400).json({message: 'Invalid Credentials'})
 }
 
 module.exports = router

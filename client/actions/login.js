@@ -31,16 +31,15 @@ export function login (userDetails) {
     dispatch(requestLogin())
     return loginUser(userDetails)
       .then(res => {
-        if (!res.ok) {
-          dispatch(loginError(res.body.message))
-          return Promise.reject(res.body.message)
-        } else {
-          set('token', res.body.token)
-          getUser()
-            .then(user => {
-              dispatch(receiveLogin(user))
-            })
-        }
+        set('token', res.body.token)
+        getUser()
+          .then(user => {
+            dispatch(receiveLogin(user))
+          })
+      })
+      .catch(err => {
+        dispatch(loginError(err.response.body.message))
+        return Promise.reject(err.response.body.message)
       })
   }
 }
