@@ -1,5 +1,6 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/login'
 import {LOGOUT} from '../actions/logout'
+import {UPDATE_USER} from '../actions/index'
 
 const initState = {
   isFetching: false,
@@ -34,6 +35,11 @@ export default function (state = initState, action) {
       return {
         isAuthenticated: false,
         user: null
+      }
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: action.user
       }
     default:
       return state

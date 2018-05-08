@@ -3,6 +3,14 @@ import {getCurrentOrder, getUsers, addOrderItem, orderIsComplete, deleteItem} fr
 export const SHOW_CURRENT_ORDER = 'SHOW_CURRENT_ORDER'
 export const SHOW_USERS = 'SHOW_USERS'
 export const SHOW_ERROR = 'SHOW_ERROR'
+export const UPDATE_USER = 'UPDATE_USER'
+
+export function updateUser (user) {
+  return {
+    type: UPDATE_USER,
+    user
+  }
+}
 
 export function showError (errorMessage) {
   return {

@@ -1,13 +1,15 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-import {getUser, updateUserProfile} from '../apiClient'
+import {updateUserProfile} from '../apiClient'
+import {updateUser} from '../actions/index'
 
 class Profile extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       userId: 0,
+      credId: 0,
       name: '',
       orderText: ''
     }
@@ -15,29 +17,27 @@ class Profile extends React.Component {
     this.handleUpdate = this.handleUpdate.bind(this)
   }
 
-  componentDidMount () {
-    getUser()
-      .then(user => {
-        this.setState({user})
-      })
-  }
-
   handleChange (e) {
     this.setState({
-      orderText: e.target.value
+      userId: this.props.user.userId,
+      credId: this.props.user.credId,
+      orderText: e.target.value,
+      name: this.props.user.name
     })
   }
 
   handleUpdate (e) {
     e.preventDefault()
     updateUserProfile(this.state)
+      .then((user) => this.props.dispatch(updateUser(user)))
   }
 
   render () {
+    const {name, orderText} = this.props.user
     return (
       <div className='user-profile'>
-        <h2>Name: {this.state.name}</h2>
-        <h3>Current order: {this.state.orderText}</h3>
+        <h2>Name: {name}</h2>
+        <h3>Current order: {orderText}</h3>
         <div className='change-order'>
           <form onSubmit={this.handleUpdate}>
             <h5>Change your order below</h5>
@@ -50,4 +50,11 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuthenticated,
+    user: state.auth.user || {}
+  }
+}
+
+export default connect(mapStateToProps)(Profile)
