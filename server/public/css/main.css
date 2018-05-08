@@ -47,3 +47,7 @@ button.completed {
   width: 8em;
   text-align: center;
 }
+
+.error {
+  color: red;
+}

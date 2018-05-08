@@ -61,7 +61,7 @@ class Home extends React.Component {
   renderInactiveOrder (items) {
     if (this.props.isAuth) {
       return (
-        <p style='color: red'>MAKE NEW ORDER BUTTON GOES HERE</p>
+        <p className='error'>MAKE NEW ORDER BUTTON GOES HERE</p>
       )
     }
     return (
