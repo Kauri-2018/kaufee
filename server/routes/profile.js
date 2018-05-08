@@ -17,3 +17,12 @@ router.get('/', token.decode, (req, res) => {
       res.status(500).send(err.message)
     })
 })
+
+router.put('/', token.decode, (req, res) => {
+  db.updateUser(req.body)
+    .then(() => db.getUser(req.body.userId))
+    .then((user) => res.json(user))
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
