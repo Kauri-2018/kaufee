@@ -9,42 +9,42 @@ exports.seed = (knex, Promise) => {
           user_id: 1,
           order_id: 1,
           order_text: 'flat white',
-          user_name: 'Don'
+          user_name: 'don'
         },
         {
           id: 2,
           user_id: 2,
           order_id: 1,
           order_text: 'latte',
-          user_name: 'Emily'
+          user_name: 'emily'
         },
         {
           id: 3,
           user_id: 3,
           order_id: 1,
           order_text: 'long black',
-          user_name: 'Tony'
+          user_name: 'tony'
         },
         {
           id: 4,
           user_id: 1,
           order_id: 2,
           order_text: 'flat white',
-          user_name: 'Don'
+          user_name: 'don'
         },
         {
           id: 5,
           user_id: 2,
           order_id: 2,
           order_text: 'latte',
-          user_name: 'Emily'
+          user_name: 'emily'
         },
         {
           id: 6,
           user_id: 3,
           order_id: 2,
           order_text: 'long black',
-          user_name: 'Tony'
+          user_name: 'tony'
         }
       ])
     })
