@@ -16,7 +16,7 @@
 }
 
 .navbar > div > a > button {
-  min-width: 12em;
+  min-width: 10em;
 }
 
 .completed > td {
