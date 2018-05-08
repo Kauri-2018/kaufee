@@ -7,7 +7,16 @@
 }
 
 .even-spacing {
-  justify-content: space-around
+  justify-content: space-around;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar > Link > button {
+  width: 4em;
 }
 
 .navbar > a > button {
@@ -37,4 +46,8 @@ button.completed {
 .button-complete-fn-col {
   width: 8em;
   text-align: center;
+}
+
+.error {
+  color: red;
 }
