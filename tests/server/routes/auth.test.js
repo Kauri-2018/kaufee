@@ -26,7 +26,14 @@ jest.mock('../../../server/auth/token', () => ({
   issue: (req, res) => Promise.resolve(res.status(201).json({
     message: 'Authentication successful.',
     token: 'goosetoken'
-  }))
+  })),
+  decode: (req, res, next) => {
+    req.user = {
+      id: 1,
+      username: 'testuser'
+    }
+    next()
+  },
 }))
 
 const server = require('../../../server/server')

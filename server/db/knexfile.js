@@ -7,6 +7,9 @@ module.exports = {
     connection: {
       filename: path.join(__dirname, 'dev.sqlite3')
     },
+    seeds: {
+      directory: path.join(__dirname, '../../tests/server/db/seeds')
+    },
     useNullAsDefault: true
   },
 
@@ -41,13 +44,14 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   },
+
   test: {
     client: 'sqlite3',
     connection: {
       filename: ':memory:'
     },
     seeds: {
-      directory: path.join(__dirname, '../../tests/seeds')
+      directory: path.join(__dirname, '../../tests/server/db/seeds')
     },
     migrations: {
       directory: path.join(__dirname, 'migrations')

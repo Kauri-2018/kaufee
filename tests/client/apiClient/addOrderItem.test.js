@@ -1,6 +1,8 @@
 import nock from 'nock'
 
-import {addOrderItem} from '../../../client/apiClient'
+jest.mock('../../../client/utils/localStorage', () => ({
+  get: () => 'thisIsAFakeTestToken'
+}))
 
 const userId = {
   id: 1
@@ -9,6 +11,8 @@ const userId = {
 const orderId = {
   id: 3
 }
+
+import {addOrderItem} from '../../../client/apiClient'
 
 nock('http://localhost')
   .post('/api/v1/current-order')
