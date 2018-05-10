@@ -12,19 +12,15 @@ afterEach(() => {
   return env.cleanup(testDb)
 })
 
-test('test the environment', () => {
-  expect(true).toBeTruthy()
-})
-
 test('getUser returns an existing user', () => {
   return db.getUser(2, testDb)
     .then(user => {
-      expect(user.name).toMatch(/Test Person 2/)
+      expect(user.name).toMatch(/Don/)
     })
 })
 
 test('getUser doesn\'t return a not existing user', () => {
-  return db.getUser(10, testDb)
+  return db.getUser(15, testDb)
     .then(user => {
       expect(user).toBeFalsy()
     })

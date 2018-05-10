@@ -1,4 +1,5 @@
 import request from 'superagent'
+import {get} from './utils/localStorage'
 
 export function getCurrentOrder () {
   return request.get('/api/v1/current-order')
@@ -21,7 +22,7 @@ export function getUsers () {
 }
 
 export function getUser () {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.get('/api/v1/profile')
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
@@ -30,7 +31,7 @@ export function getUser () {
 }
 
 export function updateUserProfile (user) {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.put('/api/v1/profile')
     .set('Authorization', `Bearer ${token}`)
     .send(user)
@@ -40,7 +41,7 @@ export function updateUserProfile (user) {
 }
 
 export function addOrderItem (userId, orderId) {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   const data = {
     userId,
     orderId
@@ -51,7 +52,7 @@ export function addOrderItem (userId, orderId) {
 }
 
 export function deleteItem (orderItemId) {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.delete(`/api/v1/current-order/${orderItemId}`)
     .set('Authorization', `Bearer ${token}`)
 }
@@ -63,7 +64,7 @@ export function loginUser (userDetails) {
 }
 
 export function orderIsComplete (orderId) {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   const data = {
     orderId
   }
@@ -73,7 +74,7 @@ export function orderIsComplete (orderId) {
 }
 
 export function addOrder (userId) {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.put('/api/v1/current-order/new-order')
     .set('Authorization', `Bearer ${token}`)
     .send({userId})

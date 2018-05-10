@@ -1,17 +1,25 @@
 const request = require('supertest')
 
+jest.mock('../../../server/auth/token', () => ({
+  decode: (req, res, next) => {
+    req.user = {
+      id: 1,
+      username: 'testuser'
+    }
+    next()
+  },
+  issue: (req, res, next) => next()
+}))
+
 jest.mock('../../../server/db/orders', () => ({
-  getCurrentOrder: (id) => Promise.resolve([
+  getCurrentOrderItems: () => Promise.resolve([
     {
-      orderId: id,
+      orderId: 1,
       userName: 'Sarah',
       orderDetails: 'flat white',
       orderItemsId: 1
     }
-  ])
-}))
-
-jest.mock('../../../server/db/orderItems', () => ({
+  ]),
   addToOrder: (userId, orderId) => {
     if (orderId < 1) {
       return Promise.reject(new Error('Order does not exist.'))
@@ -23,19 +31,24 @@ jest.mock('../../../server/db/orderItems', () => ({
   }
 }))
 
+jest.mock('../../../server/db/users', () => ({
+  userExists: () => Promise.resolve(true)
+}))
+
 const server = require('../../../server/server')
 
-test('get /api/v1/current-order returns current order', () => {
+test('GET /api/v1/current-order returns current order', () => {
   const expected = 'flat white'
   return request(server)
     .get('/api/v1/current-order')
     .set('Accept', 'application/json')
+    .expect(200)
     .then(res => {
       expect(res.body.items[0].order).toBe(expected)
     })
 })
 
-test('post /api/v1/current-order add to order', () => {
+test('POST /api/v1/current-order add to order', () => {
   const expected = 200
   const orderData = {
     userId: 1,
@@ -43,13 +56,15 @@ test('post /api/v1/current-order add to order', () => {
   }
   return request(server)
     .post('/api/v1/current-order')
+    .set('Authorization', 'Bearer thisWontGetUsed')
     .send(orderData)
+    .expect(200)
     .then(res => {
       expect(res.status).toBe(expected)
     })
 })
 
-test('post /api/v1/current-order should not add to order', () => {
+test('POST /api/v1/current-order should not add to order', () => {
   const expected = 500
   const orderData = {
     userId: 0,
@@ -57,13 +72,14 @@ test('post /api/v1/current-order should not add to order', () => {
   }
   return request(server)
     .post('/api/v1/current-order')
+    .set('Authorization', 'Bearer thisWontGetUsed')
     .send(orderData)
     .then(res => {
       expect(res.status).toBe(expected)
     })
 })
 
-test('post /api/v1/current-order should not add to order', () => {
+test('POST /api/v1/current-order should not add to order', () => {
   const expected = 500
   const orderData = {
     userId: 1,
@@ -71,6 +87,7 @@ test('post /api/v1/current-order should not add to order', () => {
   }
   return request(server)
     .post('/api/v1/current-order')
+    .set('Authorization', 'Bearer thisWontGetUsed')
     .send(orderData)
     .then(res => {
       expect(res.status).toBe(expected)

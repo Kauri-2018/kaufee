@@ -90,9 +90,6 @@ function addToOrder (userId, orderId, conn = connection) {
             })
         })
     })
-    .catch(err => {
-      console.log(err.message)
-    })
 }
 
 function deleteOrderItem (itemId, conn = connection) {

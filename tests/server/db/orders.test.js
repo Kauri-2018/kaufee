@@ -12,20 +12,16 @@ afterEach(() => {
   return env.cleanup(testDb)
 })
 
-test('test the environment', () => {
-  expect(true).toBeTruthy()
-})
-
-test('getCurrentOrder returns 1 coffee order', () => {
-  return db.getCurrentOrder(1, testDb)
+test('getCurrentOrder returns 3 coffee orders', () => {
+  return db.getCurrentOrderItems(testDb)
     .then(orders => {
       const actual = orders.length
-      expect(actual).toBe(1)
+      expect(actual).toBe(3)
     })
 })
 
 test('getOrders returns all of orders table', () => {
-  const expected = 1
+  const expected = 2
   return db.getOrders(testDb)
     .then(results => {
       const actual = results.length
@@ -44,5 +40,26 @@ test('orderExists doesn\'t find non-existing order', () => {
   return db.orderExists(-1, testDb)
     .then(orderExists => {
       expect(orderExists).toBeFalsy()
+    })
+})
+
+test('addToOrder adds a new order', () => {
+  return db.addToOrder(5, 1, testDb)
+    .then(numInserted => {
+      expect(numInserted.length).toBe(1)
+    })
+})
+
+test('addToOrder does not add on non-existent order', () => {
+  return db.addToOrder(2, -1, testDb)
+    .catch(err => {
+      expect(err.message).toMatch('Order does not exist.')
+    })
+})
+
+test('addToOrder does not add on non-existent user', () => {
+  return db.addToOrder(-1, 1, testDb)
+    .catch(err => {
+      expect(err.message).toMatch('User does not exist.')
     })
 })

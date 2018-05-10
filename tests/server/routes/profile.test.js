@@ -13,9 +13,10 @@ jest.mock('../../../server/auth/token', () => ({
 
 // mock DB Users
 jest.mock('../../../server/db/users', () => ({
-  getUser: (id) => Promise.resolve({
+  getUserByCredId: (id) => Promise.resolve({
     userId: id,
-    name: 'Don',
+    credId: 20,
+    name: 'Cam',
     orderText: 'Flat White'
   })
 }))
@@ -27,7 +28,8 @@ test('GET /api/v1/profile returns user profile', () => {
   // Arrange
   const expected = {
     userId: 1,
-    name: 'Don',
+    credId: 20,
+    name: 'Cam',
     orderText: 'Flat White'
   }
   // Act
